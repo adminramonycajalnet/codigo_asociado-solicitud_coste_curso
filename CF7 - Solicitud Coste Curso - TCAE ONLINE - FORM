@@ -1,0 +1,363 @@
+[hidden timestamp]
+
+[hidden idCiclo "19201"]
+
+[hidden coste-hora]
+[hidden coste-hora-aplazado]
+[hidden porcentaje-primer-pago-aplazado]
+[hidden resto-porcentaje-pago-aplazado]
+[hidden porcentaje-modulo-convalidado]
+
+[hidden coste-preinscripcion]
+
+[hidden nombre-idModulo-5448]
+[hidden nombre-idModulo-5449]
+[hidden nombre-idModulo-5450]
+[hidden nombre-idModulo-5451]
+[hidden nombre-idModulo-5452]
+[hidden nombre-idModulo-5453]
+[hidden nombre-idModulo-5455]
+[hidden nombre-idModulo-5456]
+[hidden nombre-idModulo-5457]
+[hidden nombre-idModulo-5458]
+
+[hidden coste-idModulo-5448]
+[hidden coste-idModulo-5449]
+[hidden coste-idModulo-5450]
+[hidden coste-idModulo-5451]
+[hidden coste-idModulo-5452]
+[hidden coste-idModulo-5453]
+[hidden coste-idModulo-5455]
+[hidden coste-idModulo-5456]
+[hidden coste-idModulo-5457]
+[hidden coste-idModulo-5458]
+
+[hidden horas-idModulo-5448]
+[hidden horas-idModulo-5449]
+[hidden horas-idModulo-5450]
+[hidden horas-idModulo-5451]
+[hidden horas-idModulo-5452]
+[hidden horas-idModulo-5453]
+[hidden horas-idModulo-5455]
+[hidden horas-idModulo-5456]
+[hidden horas-idModulo-5457]
+[hidden horas-idModulo-5458]
+
+[hidden coste-idModulo-aplazado-5448]
+[hidden coste-idModulo-aplazado-5449]
+[hidden coste-idModulo-aplazado-5450]
+[hidden coste-idModulo-aplazado-5451]
+[hidden coste-idModulo-aplazado-5452]
+[hidden coste-idModulo-aplazado-5453]
+[hidden coste-idModulo-aplazado-5455]
+[hidden coste-idModulo-aplazado-5456]
+[hidden coste-idModulo-aplazado-5457]
+[hidden coste-idModulo-aplazado-5458]
+
+[hidden coste-idModulo-aplazado-mensual-5448]
+[hidden coste-idModulo-aplazado-mensual-5449]
+[hidden coste-idModulo-aplazado-mensual-5450]
+[hidden coste-idModulo-aplazado-mensual-5451]
+[hidden coste-idModulo-aplazado-mensual-5452]
+[hidden coste-idModulo-aplazado-mensual-5453]
+[hidden coste-idModulo-aplazado-mensual-5455]
+[hidden coste-idModulo-aplazado-mensual-5456]
+[hidden coste-idModulo-aplazado-mensual-5457]
+[hidden coste-idModulo-aplazado-mensual-5458]
+
+[hidden primer_pago-idModulo-aplazado-5448]
+[hidden primer_pago-idModulo-aplazado-5449]
+[hidden primer_pago-idModulo-aplazado-5450]
+[hidden primer_pago-idModulo-aplazado-5451]
+[hidden primer_pago-idModulo-aplazado-5452]
+[hidden primer_pago-idModulo-aplazado-5453]
+[hidden primer_pago-idModulo-aplazado-5455]
+[hidden primer_pago-idModulo-aplazado-5456]
+[hidden primer_pago-idModulo-aplazado-5457]
+[hidden primer_pago-idModulo-aplazado-5458]
+
+[hidden horas-total-primero]
+[hidden coste-total-primero]
+[hidden coste-total-aplazado-primero]
+[hidden coste-total-primer-pago-aplazado-primero]
+[hidden coste-total-aplazado-mensual-primero]
+
+[hidden horas-total-segundo]
+[hidden coste-total-segundo]
+[hidden coste-total-aplazado-segundo]
+[hidden coste-total-primer-pago-aplazado-segundo]
+[hidden coste-total-aplazado-mensual-segundo]
+
+[hidden coste-matricula-primero]
+[hidden coste-matricula-segundo]
+
+[hidden fecha-segundo-pago-matricula-primero]
+[hidden numero-mensualidades-primero]
+[hidden rango-mensualidades-primero]
+[hidden coste-total-primer-pago-aplazado-con-preinscripcion-primero]
+[hidden coste-total-segundo-pago-aplazado-con-preinscripcion-primero]
+[hidden coste-total-primer-pago-aplazado-sin-preinscripcion-primero]
+[hidden coste-total-segundo-pago-aplazado-sin-preinscripcion-primero]
+[hidden coste-mensual-primero]
+
+[hidden fecha-segundo-pago-matricula-segundo]
+[hidden numero-mensualidades-segundo]
+[hidden rango-mensualidades-segundo]
+[hidden coste-total-primer-pago-aplazado-con-preinscripcion-segundo]
+[hidden coste-total-segundo-pago-aplazado-con-preinscripcion-segundo]
+[hidden coste-total-primer-pago-aplazado-sin-preinscripcion-segundo]
+[hidden coste-total-segundo-pago-aplazado-sin-preinscripcion-segundo]
+[hidden coste-mensual-segundo]
+
+[hidden coste-total-final]
+[hidden coste-total-aplazado-final]
+
+[hidden iban-banco]
+[hidden entidad-banco]
+[hidden oficina-banco]
+[hidden dc-banco]
+[hidden numero-cuenta-banco]
+
+<label for="">Nombre</label>[text* nombre]
+
+<label for="">Apellidos</label>[text* apellidos]
+
+[uacf7-row]
+   [uacf7-col col:4]
+      <label for="">Correo electrónico </label>
+      [email* email]
+   [/uacf7-col]
+   [uacf7-col col:4]
+      <label>Fecha de nacimiento </label>
+      [date* fecha-nacimiento]
+   [/uacf7-col]
+   [uacf7-col col:4]
+      <label for="">Con DNI Nº</label>
+      [identidad* numero-dni-nie "cf-validate-dni" "cf-validate-nif" "cf-validate-cif" "cf-validate-nie"]
+   [/uacf7-col]
+[/uacf7-row]
+
+[uacf7-row]
+   [uacf7-col col:6]
+      <label>Teléfono 1</label>
+      [tel* telefono1]
+   [/uacf7-col]
+   [uacf7-col col:6]
+      <label>Teléfono 2</label>
+      [tel telefono2]
+   [/uacf7-col]
+[/uacf7-row]
+
+<label for="">Domiciliado en</label>
+[text* calle]
+
+[uacf7-row]
+   [uacf7-col col:3]
+      <label for="">Número </label>
+      [text* numero]
+   [/uacf7-col]
+   [uacf7-col col:3]
+      <label>Localidad</label>
+      [text* localidad]
+   [/uacf7-col]
+   [uacf7-col col:3]
+      <label for="">Código postal</label>
+      [text* codigo-postal minlenght:5 maxlenght:5]
+   [/uacf7-col]
+[uacf7-col col:3]
+      <label for="">Provincia</label>
+      [text* provincia]
+   [/uacf7-col]
+[/uacf7-row]
+
+[uacf7-row]
+   [uacf7-col col:4]
+      <label for="">Antiguo alumno</label>
+      [select* antiguo-alumno include_blank "No" "Si"]
+   [/uacf7-col]
+   [uacf7-col col:4]
+      [group grupo-antiguo-alumno-titulo-obtenido]
+         <label for=""l>Título obtenido</label>
+         [text* antiguo-alumno-titulo-obtenido]
+      [/group]
+   [/uacf7-col]
+   [uacf7-col col:4]
+      [group grupo-antiguo-alumno-ano-obtencion]
+         <label for="">Año de obtención</label>
+         [text* antiguo-alumno-ano-obtencion minlength:4 maxlength:4]
+      [/group]
+   [/uacf7-col]
+[/uacf7-row]
+
+<br/>
+
+<div style="border: 3px solid #EEBF00; background-color: white; margin-top: 1em;">
+<label for="" style="font-size: 18px; margin-top: 1em;">
+   <center>
+      <strong>Selecciona los módulos en los que quieres matricularte o matricularte y solicitar también la convalidación.</strong>
+   </center>
+</label>
+<label for="" style="font-size: 14px; margin-top: 0.5em;">
+   <center>
+      Al tratarse de una formación modular, no tienes por que marcar todos los módulos, solo en los que estés interesado el presente curso.
+   </center>
+</label>
+
+<br/>
+
+[uacf7-row]
+   [uacf7-col col:6]
+      <label for="curso" style="background-color: #EEBF00; padding: 5px;">
+         <strong>Primer curso</strong>
+      </label>
+      [uacf7-row]
+         [uacf7-col col:4] 
+            <label for="">Operaciones administrativas y documentación sanitaria</label>
+         [/uacf7-col]
+         [uacf7-col col:4] 
+            <label for="">64 horas</label>
+         [/uacf7-col]
+         [uacf7-col col:4]
+            [checkbox idModulo-5448 use_label_element exclusive "Matrícula" "Convalidación"]
+         [/uacf7-col]
+      [/uacf7-row]
+      <hr style="border: 1px solid #EEBF00;">
+      [uacf7-row]
+         [uacf7-col col:4] 
+            <label for="">Técnicas básicas de enfermería</label>
+         [/uacf7-col]
+         [uacf7-col col:4]
+            <label for="">384 horas</label>
+         [/uacf7-col] 
+         [uacf7-col col:4]
+            [checkbox idModulo-5449 use_label_element exclusive "Matrícula" "Convalidación"]
+         [/uacf7-col]
+      [/uacf7-row]
+      <hr style="border: 1px solid #EEBF00;">
+      [uacf7-row]
+         [uacf7-col col:4] 
+            <label for="">Higiene del medio hospitalario y limpieza del material</label>
+         [/uacf7-col]
+         [uacf7-col col:4]
+            <label for="">160 horas</label>
+         [/uacf7-col] 
+         [uacf7-col col:4]
+            [checkbox idModulo-5450 use_label_element exclusive "Matrícula" "Convalidación"]
+         [/uacf7-col]
+      [/uacf7-row]
+      <hr style="border: 1px solid #EEBF00;">
+      [uacf7-row]
+         [uacf7-col col:4] 
+            <label for="">Promoción de la salud y apoyo psicológico al paciente</label>
+         [/uacf7-col]
+         [uacf7-col col:4]
+            <label for="">96 horas</label>
+         [/uacf7-col] 
+         [uacf7-col col:4]
+            [checkbox idModulo-5451 use_label_element exclusive "Matrícula" "Convalidación"]
+         [/uacf7-col]
+      [/uacf7-row]
+      <hr style="border: 1px solid #EEBF00;">
+      [uacf7-row]
+         [uacf7-col col:4] 
+            <label for="">Técnicas de ayuda odontológica / estomatológica</label>
+         [/uacf7-col]
+         [uacf7-col col:4]
+            <label for="">96 horas</label>
+         [/uacf7-col] 
+         [uacf7-col col:4]
+            [checkbox idModulo-5457 use_label_element exclusive "Matrícula" "Convalidación"]
+         [/uacf7-col]
+      [/uacf7-row]
+      <hr style="border: 1px solid #EEBF00;">
+      [uacf7-row]
+         [uacf7-col col:4] 
+            <label for="">Relaciones en el entorno del trabajo</label>
+         [/uacf7-col]
+         [uacf7-col col:4]
+            <label for="">64 horas</label>
+         [/uacf7-col] 
+         [uacf7-col col:4]
+            [checkbox idModulo-5453 use_label_element exclusive "Matrícula" "Convalidación"]
+         [/uacf7-col]
+      [/uacf7-row]
+      <hr style="border: 1px solid #EEBF00;">
+      [uacf7-row]
+         [uacf7-col col:4] 
+            <label for="">El sector de la Sanidad en Andalucía</label>
+         [/uacf7-col]
+         [uacf7-col col:4]
+            <label for="">32 horas</label>
+         [/uacf7-col] 
+         [uacf7-col col:4]
+            [checkbox idModulo-5452 use_label_element exclusive "Matrícula" "Convalidación"]
+         [/uacf7-col]
+      [/uacf7-row]
+      <hr style="border: 1px solid #EEBF00;">
+      [uacf7-row]
+         [uacf7-col col:4] 
+            <label for="">Formación y Orientación Laboral (F.O.L.)</label>
+         [/uacf7-col]
+         [uacf7-col col:4]
+            <label for="">64 horas</label>
+         [/uacf7-col] 
+         [uacf7-col col:4]
+            [checkbox idModulo-5458 use_label_element exclusive "Matrícula" "Convalidación"]
+         [/uacf7-col]
+      [/uacf7-row]
+   [/uacf7-col]
+   [uacf7-col col:6]
+      <label for="curso" style="background-color: #EEBF00; padding: 5px;">
+         <strong>Segundo curso</strong>
+      </label>
+      [uacf7-row]
+         [uacf7-col col:4] 
+            <label for="">Proyecto integrado Cuidados Auxiliares de Enfermería</label>
+         [/uacf7-col]
+         [uacf7-col col:4]
+            <label for="">60 horas</label>
+         [/uacf7-col] 
+         [uacf7-col col:4]
+            [checkbox idModulo-5455 use_label_element exclusive "Matrícula" "Convalidación"]
+         [/uacf7-col]
+      [/uacf7-row]
+      <hr style="border: 1px solid #EEBF00;">
+      [uacf7-row]
+         [uacf7-col col:4] 
+            <label for="">Formación en centros de trabajo (F.C.T.)</label>
+         [/uacf7-col]
+         [uacf7-col col:4]
+            <label for="">380 horas</label>
+         [/uacf7-col] 
+         [uacf7-col col:4]
+            [checkbox idModulo-5456 use_label_element exclusive "Matrícula" "Convalidación"]
+         [/uacf7-col]
+      <hr style="border: 1px solid #EEBF00;">
+      [/uacf7-row]
+   [/uacf7-col]
+[/uacf7-row]
+</div>
+
+<br/>
+
+[uacf7-row]
+   [uacf7-col col:12]
+      [acceptance consentimientoPRIVACIDAD] He leído y acepto la <a href="https://ramonycajal.net/politica-de-privacidad/" target="_blank">política de privacidad</a> del centro CES Ramón y Cajal.[/acceptance]
+   [/uacf7-col]
+[/uacf7-row]
+
+[uacf7-row]
+   [uacf7-col col:12]
+      [acceptance consentimientoLOPDGDD] He leído y acepto la <a href="https://ramonycajal.net/politica-de-proteccion-de-datos/" target="_blank">política de protección de datos</a> del centro CES Ramón y Cajal.[/acceptance]
+   [/uacf7-col]
+[/uacf7-row]
+
+[file presupuesto class:hidden-field filetypes:pdf limit:5mb]
+
+<br/>
+
+[uacf7-row]
+   [uacf7-col col:12]
+      [submit "Enviar"]
+   [/uacf7-col]
+[/uacf7-row]
