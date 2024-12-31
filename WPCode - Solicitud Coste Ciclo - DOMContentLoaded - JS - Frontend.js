@@ -188,6 +188,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 					console.log("Opciones = " + opciones);
 					
+					let valorPrevio = "";
+					
 					opciones.forEach((opcion) => {
 						opcion.addEventListener('change', function() {
 							// Obtener el ID del módulo desde el atributo "name" del checkbox
@@ -200,17 +202,40 @@ document.addEventListener('DOMContentLoaded', function() {
         					let costeAplazadoPrevio = parseFloat(document.querySelector('input[name="coste-idModulo-aplazado-' + idModulo + '"]').value) || 0;
 							let costePrimerPagoAplazadoPrevio = parseFloat(document.querySelector('input[name="primer_pago-idModulo-aplazado-' + idModulo + '"]').value) || 0;
        	 					let costeMensualPrevio = parseFloat(document.querySelector('input[name="coste-idModulo-aplazado-mensual-' + idModulo + '"]').value) || 0;
-
+							
+							let restaPrevias = false;
+							
+							
+							
+							if (valorPrevio == "") 
+    							valorPrevio = opcion.value;
+							
+							console.log("PREVIUS VALUE = " + valorPrevio);
+							
 							// Restar horas previas de las totales generales y de matrícula
-                        	if (!opcion.checked || opcion.value !== "Matrícula") {
+                        	if ((!opcion.checked)){//|| opcion.value !== "Matrícula")){
+                            	restaPrevias = true;
+							}
+                        	else if (opcion.value === "Matrícula" && valorPrevio === "Convalidación")
+									restaPrevias = false;
+							else if (opcion.value === "Convalidación" && valorPrevio === "Matrícula"){
+									restaPrevias = true;
+									horasTotalMatriculaFinal -= horasPrevias;
+							}
+							
+							// Actualiza el valor de previousValue después de las comparaciones
+							valorPrevio = opcion.value;
+							
+							// Incrementar o restar según corresponda
+							if (restaPrevias == true) {
                             	if (modulo.Curso === 1) {
                                 	horasTotalPrimero -= horasPrevias;
                             	} else if (modulo.Curso === 2) {
                                 	horasTotalSegundo -= horasPrevias;
                             	}
-                            	horasTotalMatriculaFinal -= opcion.value === "Matrícula" ? horasPrevias : 0;
+                            	horasTotalMatriculaFinal -= (opcion.value === "Matrícula")  ? horasPrevias : 0;
                         	}
-							
+						
         					// Restar valores previos de los totales
         					if (modulo.Curso == 1 || modulo.Curso == 2) {
     							let horasTotal = modulo.Curso == 1 ? horasTotalPrimero : horasTotalSegundo;
