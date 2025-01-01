@@ -1,81 +1,75 @@
     <!-- CÓDIGO A AÑADIR PARA EL PLUGIN DE WORDPRESS CREATE PDF PARA CF7-->
-     <style>
+    <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-            line-height: 1.6;
+            line-height: 1.5;
         }
         h1 {
-            font-size: 1.3em;
-            text-align: center;
-            margin-bottom: 1em;
-        }
-        h2 {
             font-size: 1.2em;
             margin-bottom: 1em;
+						text-align: left;
+        }
+        h2 {
+            font-size: 1.1em;
+            margin-bottom: 1em;
         }
 
-        hr {
-            margin-top: 2em;
-            margin-bottom: 2em;
-            background-color: #EEBF00;
-            border-color: #EEBF00;
-            height: 5px;
-        }
         .container {
-            max-width: 1024px;
             margin: 0 auto;
-            padding: 20px;
         }
-
-        .header-img img{
-			text-align: center;
-			max-width: 50%; 
-
-			height: auto; 
-			display: flex; 
-			margin: 0 auto;
-		}
 
         .bold {
             font-weight: bold;
         }
         table {
             width: 100%;
-            margin-top: 1em;
-			border-spacing: 0px;
+            margin-top: 0.5em;
+						border-spacing: 0px;
         }
-		.course-name-table-head th {
+			
+			.student-data-responsive-table table td{
+				font-size: 0.9em;
+			}
+			 
+				.course-name-table-head th {
             text-align: center;
         }
-		.course-table-head th {
+			 
+				.course-table-head th {
             text-align: center;
         }
+			 
         .course-table-food th {
             text-align: center;
         }
+			 
         .paid-method-table-head th {
             text-align: center;
         }
-		.module-name-cell {
+			 
+				.module-name-cell {
             text-align: left;
         }
-		.module-info-cell {
-			text-align: right;
-		}
+			 
+				.module-info-cell {
+					text-align: right;
+				}
+			 
         td {
             border: 1px solid #EEBF00;
-            padding: 8px;
+            padding: 4px;
             text-align: left;
         }
         th {
             background-color: #EEBF00;
             border: 1px solid white;
-            padding: 8px;
+            padding: 4px;
             text-align: left;
         }
         .responsive-table {
             width: 100%;
+						
         }
 
         .economic-condition-responsive-table {
@@ -103,7 +97,6 @@
         }
 
         .aditional-info {
-            margin-top: 2em;
             border: solid 1px #EEBF00;
             border-radius: 20px;
         }
@@ -117,11 +110,7 @@
         .aditional-info-content{
             margin-left: 1em;
             margin-right: 1em;
-        }
-
-        .aditional-info-content ol li{
-            margin-bottom: 1em;
-            font-size: 0.9em;
+            font-size: 0.8em;
         }
 
         .bank-info-number-title{
@@ -129,8 +118,8 @@
             border: solid 1px white;
             font-weight: bold;
             background-color: #EEBF00;
-						padding: 0.2em;
-						text-align: center;
+			padding: 0.2em;
+			text-align: center;
         }
 
         .bank-info-number-data{
@@ -138,8 +127,8 @@
             border: solid 1px #EEBF00;
             font-weight: bold;
             background-color: white;
-						padding: 0.2em;
-						text-align: center;
+			padding: 0.2em;
+			text-align: center;
         }
 
         .signature-table-title{
@@ -155,58 +144,53 @@
         }
 
         .contact-info{
-            background-color: #192B77;
-            padding: 10px; 
+            background-color: #572364;
+            padding: 4px; 
             color: white;
-            line-height: 1em;
+            line-height: 0.5em;
         }
 
-        footer{
-            font-size: 0.8em;
+        .contact-info a{
+            text-decoration: none;
+            color: white;
         }
-        .footer-table-version{
-            border: none;
+
+        .footer-table{
+            border: none !important;
             text-align: center;
-        }
-
-        .footer-table-version-cell{
-            text-align: center:
-						padding: 0;
-						border: none;
-        }
-
-        .footer-table-lopd-sgs{
-            border: none;
+            padding: 0;
+						margin-bottom:0;
+						font-size: 0.8em
         }
 			 
-			 .footer-table-lopd-sgs-cell-text{
-            border: none;
-				 		text-align: start;
-				 		width: 80%
-        }
-			 	.footer-table-lopd-sgs-cell-img{
-            border: none;
-				 		text-align: center;
-						width: 20%;
-        }
+				.footer-table-cell-text{
+            border: none !important;
+						text-align: start;
+						width: 85%;
+            font-size: 0.8em;
+     		}
+
+				.footer-table-cell-img{
+            border: none !important;
+						text-align: right;
+						width: 15%;
+            padding: 0;
+     		}
 			 
-			 .footer-table-lopd-sgs-cell-logo{
-				 		max-width: 100px;
-				 		height: auto;
-			 }
+				.footer-table-cell-logo{
+					  border: none !important;
+						max-width: 40px;
+						height: auto;
+				}
     </style>
 
 
     <div class="container">
-        
-        <h1>Información sobre Grado Medio de Cuidados Auxiliares de Enfermería</h1>
-
-        <p>Estimado/a <span class="bold">[nombre] [apellidos]</span>,</p>
-
-        <p>En respuesta a su solicitud de información acerca del coste del Grado Medio de Cuidados Auxiliares de Enfermería, en modalidad a distancia, le hacemos llegar el siguiente desglose de precios, según los módulos en los que desea matricularse y/o convalidar:</p>
+			<p>Estimado/a <span class="bold">[nombre] [apellidos]</span>,</p>
+			<p>En respuesta a su solicitud de información acerca del coste del Grado Medio de Cuidados Auxiliares de Enfermería, en modalidad a distancia, le hacemos llegar el siguiente desglose de precios, según los módulos en los que desea matricularse y/o convalidar:</p>
 
         <div class="student-data-responsive-table">
-            <h2>Datos del alumno/a:</h2>
+            <h1>Datos del alumno/a:</h1>
             <table>
                 <tr>
                     <td><span class="bold">Nombre: </span>[nombre]</td>
@@ -223,17 +207,11 @@
                 <tr>
                     <td colspan="2"><span class="bold">Dirección: </span>[calle] [numero] [codigo-postal] [localidad]. [provincia].</td>
                 </tr>
-            </table>
-        </div>
-
-        <div class="old-student-responsive-table">
-            <h2>Antiguo alumno/a:</h2>
-            <table>
-                <tr>
-                    <td><span class="bold">¿Ha cursado algún ciclo o curso en el centro anteriormente? </span>[antiguo-alumno]</td>
+				<tr>
+                    <td rowspan="3"><span class="bold">¿Ha cursado algún ciclo o curso en el centro anteriormente? </span>[antiguo-alumno]</td>
                 </tr>
                 <tr>
-                    <td><span class="bold">Título obtenido: </span>[antiguo-alumno-titulo-obtenido]</td>
+                    <td colspan="2"><span class="bold">Título obtenido: </span>[antiguo-alumno-titulo-obtenido]</td>
                 </tr>
                 <tr>
                     <td><span class="bold">Año de obtención: </span>[antiguo-alumno-ano-obtencion]</td>
@@ -243,8 +221,8 @@
 
         <h2>Módulos seleccionados para posible matrícula y/o convalidación:</h2>
 
-        <div class="responsive-table">
-            <table>
+       
+      <table>
 				<thead class="course-name-table-head">
 					<tr>
 						<th colspan="7">Primer curso</th>
@@ -350,8 +328,7 @@
                             <th class="module-info-cell">[coste-total-aplazado-primero]€</th>
                             <th class="module-info-cell">[coste-total-primer-pago-aplazado-primero]€</th>
                             <th class="module-info-cell">[coste-total-aplazado-mensual-primero]€</th>
-                        </tr>
-                    
+                        </tr> 
 				</tbody>
 			</table>
 
@@ -371,7 +348,7 @@
                 <thead class="course-table-head">
                     <tr>
                         <th>Módulo</th>
-			            <th>Horas lectivas</th>
+			            			<th>Horas lectivas</th>
                         <th>Opción</th>
                         <th>Precio total</th>
                         <th>Precio total</th>
@@ -382,7 +359,7 @@
                 <tbody>
                     <tr id="idModule-5455" class="module-info-row">
                         <td class="module-name-cell">[nombre-idModulo-5455]</td>
-			            <td class="module-info-cell">[horas-idModulo-5455]</td>
+			            			<td class="module-info-cell">[horas-idModulo-5455]</td>
                         <td class="module-info-cell">[idModulo-5455]</td>
                         <td class="module-info-cell">[coste-idModulo-5455]€</td>
                         <td class="module-info-cell">[coste-idModulo-aplazado-5455]€</td>
@@ -391,15 +368,13 @@
                     </tr>
                     <tr id="idModule-5456" class="module-info-row">
                         <td class="module-name-cell">[nombre-idModulo-5456]</td>
-						<td class="module-info-cell">[horas-idModulo-5456]</td>
+												<td class="module-info-cell">[horas-idModulo-5456]</td>
                         <td class="module-info-cell">[idModulo-5456]</td>
                         <td class="module-info-cell">[coste-idModulo-5456]€</td>
                         <td class="module-info-cell">[coste-idModulo-aplazado-5456]€</td>
                         <td class="module-info-cell">[primer_pago-idModulo-aplazado-5456]€</td>
                         <td class="module-info-cell">[coste-idModulo-aplazado-mensual-5456]€</td>
                     </tr>
-                </tbody>
-                
                     <tr class="module-info-row total-row">
                         <th class="module-name-cell">TOTAL</th>
                         <th class="module-info-cell">[horas-total-segundo]</th>
@@ -409,13 +384,13 @@
                         <th class="module-info-cell">[coste-total-primer-pago-aplazado-segundo]€</th>
                         <th class="module-info-cell">[coste-total-aplazado-mensual-segundo]€</th>
                     </tr>
-                
+                </tbody> 
             </table>
-        </div>
 
         <p><span class="bold">Coste total al contado: </span> [coste-total-final]€ (IVA incluido).</p>
         <p><span class="bold">Coste total pago aplazado: </span> [coste-total-aplazado-final]€ (IVA incluido).</p>
-
+			
+			[addpage]
 
         <h2>Régimen económico del ciclo modular </h2>
 
@@ -526,19 +501,16 @@
                     <li>El precio de hora lectiva con pago al contado es de [coste-hora]€</li>
                     <li>El precio de la hora lectiva con pago aplazado es de [coste-hora-aplazado]€. Un [porcentaje-primer-pago-aplazado]% se liquidará en los pagos de reserva y matrícula. El restante [resto-porcentaje-pago-aplazado]% será liquidado en 8 mensualidades (octubre - mayo) para los módulos pertenecientes al primer curso y en 3 mensualidades (octubre - diciembre) para los módulos pertenecientes al segundo curso.</li>
                     <li>Cada módulo convalidado en matrícula diferenciada tendrá un costo de [porcentaje-modulo-convalidado]% del coste que le corresponda en función de su carga horaria, que se abonará al realizar la matrícula. Cuando la resolución de la solicitud de convalidación de un módulo resulte desfavorable, el alumno/a deberá regularizar su situación, en función de los plazos que permita la comunicación nde dicha resolución.</li>
-                    <li>
-                        <p>Cuando se obtenga la exención total del módulo de Formación en Centros de Trabajo en matrícula diferenciada, éste tendrá un coste del [porcentaje-modulo-convalidado]% del coste que corresponda al módulo, que se abonará al realizar la matrícula.</p>
-                        <p>Cuando la resolución de la solicitud de exención de este módulo resulte desfavorable o se obtenga una excención parcial, si los plazos lo permiten, el alumno/a podrá inicial el periodo de Formación en Centros de Trabajo. Para ello deberá regularizar su situación, abonando el coste total del módulo.</p>
+                    <li>Cuando se obtenga la exención total del módulo de Formación en Centros de Trabajo en matrícula diferenciada, éste tendrá un coste del [porcentaje-modulo-convalidado]% del coste que corresponda al módulo, que se abonará al realizar la matrícula.<br>
+                        Cuando la resolución de la solicitud de exención de este módulo resulte desfavorable o se obtenga una excención parcial, si los plazos lo permiten, el alumno/a podrá inicial el periodo de Formación en Centros de Trabajo. Para ello deberá regularizar su situación, abonando el coste total del módulo.
                     </li>
                     <li>Documentación:
-                        <p>
                             <ol>
                                 <li>Solicitud de admisión, facilitada por la Secretaría de este Centro, debidamente diligenciada.</li>
                                 <li>Documentación acreditativa de los estudios que posee o que está realizando. (Alumnos/as del Centro NO APORTAR).</li>
                                 <li>Justificante de haber abonado la cantidad indicada por la Administración de este Centro en concepto de reserva de plaza.</li>
                                 <li>Este documento de información de precios y documentación a presentar por el alumno/a aceptado y conforme.</li>
                             </ol>
-                        </p>
                     </li>
                 </ol>
             </div>
@@ -566,8 +538,6 @@
 					</table>
 				</div>
 
-        [addpage]
-
         <div class="signature">
 					<table class="signature-table">
     					<tbody>
@@ -588,32 +558,7 @@
         <p>Gracias por su interés en formarse con nosotros.</p>
 
         <div class="contact-info">
-            <p>CES Ramón y Cajal</p>
-            <p>Libertador Joaquín J. Da Silva Xavier, 1</p>
-            <p>Córdoba, 14013</p>
+            <p>CES Ramón y Cajal. Libertador Joaquín J. Da Silva Xavier, 1 Córdoba, 14013 </p>
             <p>957 20 00 00 | <a href="mailto:info@ramonycajal.net">info@ramonycajal.net</a></p>
-        </div>
-        
-        <div class="footer">
-					<table class="footer-table-version">
-    					<tbody>
-        				<tr>
-            			<td class="footer-table-version-cell">Precios FP Distancia</td>
-					  			<td class="footer-table-version-cell">Edición nº2</td>
-									<td class="footer-table-version-cell">Fecha de edición: 01/01/2025</td>
-        			</tr>
-    				</tbody>
-					</table>
-					
-					<table class="footer-table-lopd-sgs">
-    					<tbody>
-        				<tr>
-            			<td class="footer-table-lopd-sgs-cell-text"><p>Sus datos de carácter personal han sido recogidos de acuerdo con lo dispuesto en la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos de Carácter Personal, y se encuentran almacenados en un fichero propiedad de Centro Cordobés de Enseñanzas Medias Sociedad Cooperativa Andaluza con domicilio en Libertador Joaquín José da Silva Xavier, 1. De acuerdo con la Ley anterior, podrá ejercer los derechos de acceso, rectificación y cancelación de los datos enviando una solicitud por escrito.</p></td>
-					  			<td class="footer-table-lopd-sgs-cell-img"><img class="footer-table-lopd-sgs-cell-logo" src="https://ramonycajal.net/wp-content/uploads/2023/03/iso9001-removebg.png"> </td>
-        			</tr>
-    				</tbody>
-					</table>
-
-				</div>
-    
+        </div>    
 
