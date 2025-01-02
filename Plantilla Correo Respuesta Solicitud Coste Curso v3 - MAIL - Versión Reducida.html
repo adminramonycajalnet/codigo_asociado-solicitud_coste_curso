@@ -130,98 +130,6 @@
             font-size: 0.9em;
         }
 
-        .bank-info-content {
-            display: grid; /* Cambia a un diseño de grid */
-            grid-template-columns: repeat(5, 1fr); 
-            grid-template-rows: 1fr 1fr; 
-            grid-template-areas: 
-                "bank-info-number-title-iban bank-info-number-title-entidad bank-info-number-title-oficina bank-info-number-title-dc bank-info-number-title-numero"
-                "bank-info-number-data-iban bank-info-number-data-entidad bank-info-number-data-oficina bank-info-number-data-dc bank-info-number-data-numero";
-            text-align: center;
-            width: 100%; /* La tabla ocupa todo el ancho */
-            border-collapse: collapse;
-        }
-
-        .bank-info-number-title{
-            display: table-cell;
-            border: solid 1px white;
-            font-weight: bold;
-            background-color: #EEBF00;
-        }
-
-        .bank-info-number-data{
-            display: table-cell;
-            border: solid 1px #EEBF00;
-            font-weight: bold;
-            background-color: white;
-        }
-
-        .bank-info-number-title-iban{
-            grid-area: bank-info-number-title-iban;
-        }
-
-        .bank-info-number-title-entidad{
-            grid-area: bank-info-number-title-entidad;
-        }
-
-        .bank-info-number-title-oficina{
-            grid-area: bank-info-number-title-oficina;
-        }
-
-        .bank-info-number-title-dc{
-            grid-area: bank-info-number-title-dc;
-        }
-
-        .bank-info-number-title-numero{
-            grid-area: bank-info-number-title-numero;
-        }
-
-        .bank-info-number-data-iban{
-            grid-area: bank-info-number-data-iban;
-        }
-
-        .bank-info-number-data-entidad{
-            grid-area: bank-info-number-data-entidad;
-        }
-
-        .bank-info-number-data-oficina{
-            grid-area: bank-info-number-data-oficina;
-        }
-
-        .bank-info-number-data-dc{
-            grid-area: bank-info-number-data-dc;
-        }
-
-        .bank-info-number-data-numero{
-            grid-area: bank-info-number-data-numero;
-        }
-
-        .signature{
-            display: table;
-            width: 100%;
-            text-align: start;
-            margin-top: 1em;
-            text-align: center;
-        }
-
-        .signature-row{
-            display: table-row;
-        }
-
-        .signature-title{
-            display: table-cell;
-            border: solid 1px white;
-            background-color: #EEBF00;
-            font-weight: bold;
-        }
-        .signature-data{
-            display: table-cell;
-            border: solid 1px #EEBF00;
-            text-align: start;
-            padding: 1em;
-            height: 7em;
-        }
-
         .contact-info{
             background-color: #192B77;
             padding: 10px; 
@@ -554,7 +462,7 @@
                 <thead class="course-table-head">
                     <tr>
                         <th>Módulo</th>
-			<th>Horas lectivas</th>
+						<th>Horas lectivas</th>
                         <th>Opción</th>
                         <th>Precio total</th>
                         <th>Precio total</th>
@@ -565,7 +473,7 @@
                 <tbody>
                     <tr id="idModule-5448" class="module-info-row">
                         <td class="module-name-cell">[nombre-idModulo-5448]</td>
-			<td class="module-info-cell">[horas-idModulo-5448]</td>
+						<td class="module-info-cell">[horas-idModulo-5448]</td>
                         <td class="module-info-cell">[idModulo-5448]</td>
                         <td class="module-info-cell">[coste-idModulo-5448]€</td>
                         <td class="module-info-cell">[coste-idModulo-aplazado-5448]€</td>
@@ -639,7 +547,7 @@
                         <tr class="module-info-row total-row">
                             <th class="module-name-cell">TOTAL</th>
                             <th class="module-info-cell">[horas-total-primero]</th>
-                            <th></th>
+                            <th class="module-info-cell"></th>
                             <th class="module-info-cell">[coste-total-primero]€</th>
                             <th class="module-info-cell">[coste-total-aplazado-primero]€</th>
                             <th class="module-info-cell">[coste-total-primer-pago-aplazado-primero]€</th>
@@ -697,7 +605,7 @@
                     <tr class="module-info-row total-row">
                         <th class="module-name-cell">TOTAL</th>
                         <th class="module-info-cell">[horas-total-segundo]</th>
-                        <th></th>
+                        <th class="module-info-cell"></th>
                         <th class="module-info-cell">[coste-total-segundo]€</th>
                         <th class="module-info-cell">[coste-total-aplazado-segundo]€</th>
                         <th class="module-info-cell">[coste-total-primer-pago-aplazado-segundo]€</th>
@@ -831,42 +739,13 @@
                                 <li>Solicitud de admisión, facilitada por la Secretaría de este Centro, debidamente diligenciada.</li>
                                 <li>Documentación acreditativa de los estudios que posee o que está realizando. (Alumnos/as del Centro NO APORTAR).</li>
                                 <li>Justificante de haber abonado la cantidad indicada por la Administración de este Centro en concepto de reserva de plaza.</li>
-                                <li>Este documento de información de precios y documentación a presentar por el alumno/a aceptado y conforme.</li>
+                                <li>El documento adjunto al presente correo de información de precios y documentación a presentar por el alumno/a aceptado y conforme.</li>
                             </ol>
                         </p>
                     </li>
                 </ol>
             </div>
         </div>
-<!--
-        <div class="bank-info">
-            <p>Todos los ingresos se efectuaran a nombre de "Centro Cordobés de Enseñanzas Medias, Sociedad Cooperativa Andaluza" en:</p>
-			<div class="bank-info-content">
-                <div class="bank-info-number-title bank-info-number-title-iban">DC.IBAN</div>
-                <div class="bank-info-number-title bank-info-number-title-entidad">ENTIDAD</div>
-                <div class="bank-info-number-title bank-info-number-title-oficina">OFICINA</div>
-                <div class="bank-info-number-title bank-info-number-title-dc">D.C.</div>
-                <div class="bank-info-number-title bank-info-number-title-numero">NÚMERO DE CUENTA</div>
-
-                <div class="bank-info-number-data bank-info-number-data-iban">[iban-banco]</div>
-                <div class="bank-info-number-data bank-info-number-data-entidad">[entidad-banco]</div>
-                <div class="bank-info-number-data bank-info-number-data-oficina">[oficina-banco]</div>
-                <div class="bank-info-number-data bank-info-number-data-dc">[dc-banco]</div>
-                <div class="bank-info-number-data bank-info-number-data-numero">[numero-cuenta-banco]</div>
-            </div>
-        </div>
-
-        <div class="signature">
-            <div class="signature-row">
-                <div class="signature-title">Fecha</div>
-                <div class="signature-title">Recibí y conforme</div>
-            </div>
-            <div class="signature-row">
-                <div class="signature-data"></div>
-                <div class="signature-data">Fdo:</div>
-            </div>
-        </div>
-    -->
 
         <p>Estamos a su disposición para cualquier duda o consulta que quiera realizarnos. Puede contactar con nosotros mediante el número de teléfono <span class="bold">957200000</span> en horario de lunes a viernes de 09:00 a 14:00. También puede hacernos llegar sus dudas, consultas y comentarios mediante correo electrónico a <span class="bold">info@ramonycajal.net</span>.</p>
 

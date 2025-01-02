@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("El DOM ha sido completamente cargado. Ahora se cargan los módulos.");
-
     // Asumiendo que necesitas obtener el ID del ciclo del formulario
     let idCiclo = document.querySelector('input[name="idCiclo"]').value;
 	
@@ -25,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	let porcentaje = 0;
 	let costePreinscripcion = 0;
-	let numeroMensualidadesPrimero = 0;
+	let numMensualidadesPrimero = 0;
 	let numeroMensualidadesSegundo = 0;
 	let rangoMensualidadesPrimero = "";
 	let rangoMensualidadesSegundo = "";
@@ -101,19 +99,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const rangoMensualPrimero = rangosMensualidades.find(rm => rm.ID_Mensualidades == 1);
 			const rangoMensualSegundo = rangosMensualidades.find(rm => rm.ID_Mensualidades == 2);
             if (rangoMensualPrimero || rangoMensualSegundo) {
-				numeroMensualidadesPrimero = rangoMensualPrimero.Numero_Mensualidades;
+				numMensualidadesPrimero = rangoMensualPrimero.Numero_Mensualidades;
 				numeroMensualidadesSegundo = rangoMensualSegundo.Numero_Mensualidades;
 				rangoMensualidadesPrimero = rangoMensualPrimero.Rango_Mensualidades;
 				rangoMensualidadesSegundo = rangoMensualSegundo.Rango_Mensualidades;
 				fechaSegundoPagoAplazadoPrimero = rangoMensualPrimero.Fecha_Segundo_Pago + "/" + String(new Date().getFullYear() + 1);
 				fechaSegundoPagoAplazadoSegundo = rangoMensualSegundo.Fecha_Segundo_Pago + "/" + String(new Date().getFullYear() + 1);
-				
-				console.log("Numero Mensualidades Primero = " + numeroMensualidadesPrimero);
-				console.log("Numero Mensualidades Segundo = " + numeroMensualidadesSegundo);
-				console.log("Rango Mensualidades Primero = " + rangoMensualidadesPrimero);
-				console.log("Rango Mensualidades Segundo = " + rangoMensualidadesSegundo);
-				console.log("Fecha Segundo Pago Aplazado Primero = " + fechaSegundoPagoAplazadoPrimero);
-				console.log("Fecha Segundo Pago Aplazado Segundo = " + fechaSegundoPagoAplazadoSegundo);
             } else {
                 console.log("No se encontró un rango de mensualidades con ID_Rango_mensualides = 1 o 2");
             }
@@ -150,7 +141,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		Promise.all([modulosPromesa]).then(results => {
 			let modulos = results[0];
 			if (modulos) {
-        		console.log("Módulos obtenidos:", modulos);
 				
 				// Almacenar los módulos en sessionStorage
             	sessionStorage.setItem('modulos-' + idCiclo, JSON.stringify(modulos));
@@ -160,15 +150,15 @@ document.addEventListener('DOMContentLoaded', function() {
     			if (modulosGuardados) {
         			// Parsear los datos almacenados para convertirlos de JSON string a objeto
         			let modulos = JSON.parse(modulosGuardados);
-        			console.log("Módulos cargados desde sessionStorage:", modulos);
 				}
-
-         		modulos.forEach(modulo => {
-         			// Aquí puedes agregar lógica para mostrar la información del módulo en el formulario
-         			// Por ejemplo, puedes crear elementos de HTML dinámicamente para mostrar los módulos
-         			console.log("ID del módulo DOMContentLoaded:", modulo.ID_Modulo);
-         			console.log("Nombre del módulo DOMContentLoaded:", modulo.Nombre);
-					console.log("Precio del módulo DOMContentLoaded:", modulo.Precio_Hora_Matricula);
+			
+         		modulos.forEach(modulo => {	
+					document.querySelector('input[name="nombre-idModulo-' + modulo.ID_Modulo + '"]').value = modulo.Nombre;
+					document.querySelector('input[name="horas-idModulo-' + modulo.ID_Modulo + '"]').value = modulo.Horas_Asignadas;
+                    document.querySelector('input[name="coste-idModulo-' + modulo.ID_Modulo + '"]').value = "";
+                    document.querySelector('input[name="coste-idModulo-aplazado-' + modulo.ID_Modulo + '"]').value = "";
+					document.querySelector('input[name="primer_pago-idModulo-aplazado-' + modulo.ID_Modulo + '"]').value = ""
+					document.querySelector('input[name="coste-idModulo-aplazado-mensual-' + modulo.ID_Modulo + '"]').value = "";
 					
 					document.querySelector('input[name="coste-hora"]').value = modulo.Precio_Hora_Matricula;
 					document.querySelector('input[name="coste-hora-aplazado"]').value = modulo.Precio_Hora_Matricula_Aplazado;
@@ -185,17 +175,32 @@ document.addEventListener('DOMContentLoaded', function() {
 					
 					let seleccion = null;
 					let opciones = document.querySelectorAll('input[name="idModulo-' + modulo.ID_Modulo + '"]');
-
-					console.log("Opciones = " + opciones);
 					
-					let valorPrevio = "";
-					
+					const valoresGrupos = {};
 					opciones.forEach((opcion) => {
+						const grupo = opcion.name;
+						// Inicializar el grupo en valoresGrupos si no existe
+    					if (!valoresGrupos[grupo]) {
+        					valoresGrupos[grupo] = {
+            					valorPrevio: null,
+            					valorActual: null,
+        					};
+    					}
+						
+						opcion.addEventListener('click', (event) =>{
+							const estadoAnterior = valoresGrupos[grupo].valorActual;
+							
+							if (!opcion.checked) 
+            					valoresGrupos[grupo].valorActual = null; // Deselección
+        					 else 
+            					valoresGrupos[grupo].valorActual = event.target.value; // Selección
+						});
+						
 						opcion.addEventListener('change', function() {
 							// Obtener el ID del módulo desde el atributo "name" del checkbox
             				let idModulo = opcion.name.split('-')[1];
 							let antiguoAlumno = document.querySelector('select[name="antiguo-alumno"]').value;
-
+							
 							// Obtener valores actuales del módulo
 							let horasPrevias = parseFloat(document.querySelector('input[name="horas-idModulo-' + idModulo + '"]').value) || 0;
         					let costePrevio = parseFloat(document.querySelector('input[name="coste-idModulo-' + idModulo + '"]').value) || 0;
@@ -205,46 +210,48 @@ document.addEventListener('DOMContentLoaded', function() {
 							
 							let restaPrevias = false;
 							
-							
-							
-							if (valorPrevio == "") 
-    							valorPrevio = opcion.value;
-							
-							console.log("PREVIUS VALUE = " + valorPrevio);
+							const estadoAnterior = valoresGrupos[grupo].valorPrevio;
+        					const estadoActual = valoresGrupos[grupo].valorActual;
 							
 							// Restar horas previas de las totales generales y de matrícula
-                        	if ((!opcion.checked)){//|| opcion.value !== "Matrícula")){
+                        	if ((!opcion.checked )){//|| opcion.value !== "Matrícula")){
                             	restaPrevias = true;
 							}
-                        	else if (opcion.value === "Matrícula" && valorPrevio === "Convalidación")
+                        	else if (estadoActual === "Matrícula" && estadoAnterior === "Convalidación"){
 									restaPrevias = false;
-							else if (opcion.value === "Convalidación" && valorPrevio === "Matrícula"){
+							}
+							else if (estadoActual == "Convalidación" && estadoAnterior == "Matrícula"){
 									restaPrevias = true;
 									horasTotalMatriculaFinal -= horasPrevias;
-							}
+							}else
+								restaPrevias = false;
 							
-							// Actualiza el valor de previousValue después de las comparaciones
-							valorPrevio = opcion.value;
+							
 							
 							// Incrementar o restar según corresponda
 							if (restaPrevias == true) {
-                            	if (modulo.Curso === 1) {
+                            	if (modulo.Curso == 1) {
                                 	horasTotalPrimero -= horasPrevias;
-                            	} else if (modulo.Curso === 2) {
+                            	} else if (modulo.Curso == 2) {
                                 	horasTotalSegundo -= horasPrevias;
                             	}
                             	horasTotalMatriculaFinal -= (opcion.value === "Matrícula")  ? horasPrevias : 0;
                         	}
+								
+							// Actualizar valor previo
+        					valoresGrupos[grupo].valorPrevio = estadoActual;
 						
         					// Restar valores previos de los totales
         					if (modulo.Curso == 1 || modulo.Curso == 2) {
     							let horasTotal = modulo.Curso == 1 ? horasTotalPrimero : horasTotalSegundo;
+    							horasTotal += horasPrevias;
     							let costeTotal = modulo.Curso == 1 ? costeTotalPrimero : costeTotalSegundo;
     							let costeTotalAplazado = modulo.Curso == 1 ? costeTotalAplazadoPrimero : costeTotalAplazadoSegundo;
 								let costeTotalPrimerPagoAplazado = modulo.Curso == 1 ? costeTotalPrimerPagoAplazadoPrimero : costeTotalPrimerPagoAplazadoSegundo;
     							let costeTotalAplazadoMensual = modulo.Curso == 1 ? costeTotalAplazadoMensualPrimero : costeTotalAplazadoMensualSegundo;
-
-    							horasTotal -= parseInt(horasPrevias) || 0;
+								
+								if(horasTotal > 0)
+    								horasTotal -= parseInt(horasPrevias) || 0;
 								
     							costeTotal -= costePrevio;
     							costeTotal = parseFloat(costeTotal.toFixed(2));
@@ -276,17 +283,16 @@ document.addEventListener('DOMContentLoaded', function() {
 								costeTotalFinal = parseFloat(costeTotalPrimero) + parseFloat(costeTotalSegundo);
 								costeTotalAplazadoFinal = parseFloat(costeTotalAplazadoPrimero) + parseFloat(costeTotalAplazadoSegundo);
 							}
-							
+
 							if (opcion.checked) {
                 				let seleccion = opcion.value; // Puede ser "Matrícula" o "Convalidación"
-								console.log("Checkbox marcado:", seleccion, "para el módulo", idModulo);
 					
 								let modulosGuardados = sessionStorage.getItem('modulos-' + idCiclo);
 								let modulo = null;
 								if (modulosGuardados) {
         							let modulos = JSON.parse(modulosGuardados);
         							modulo = modulos.find(modulo => modulo.ID_Modulo == idModulo);
-    							}
+    							}	
 					
 								let costeModulo = calcularCosteModulo(modulo, seleccion, antiguoAlumno);
 								let costeModuloAplazado = calcularCosteModuloAplazado(costeModulo, incrementoPagoAplazado);
@@ -317,10 +323,8 @@ document.addEventListener('DOMContentLoaded', function() {
     								horasTotal = (parseInt(horasTotal) || 0) + (parseInt(modulo.Horas_Asignadas) || 0);
 									
 									// Sumar a las horas de matrícula final si es de tipo Matrícula
-                                	if (opcion.value === "Matrícula") 
+                                	if (opcion.value == "Matrícula") 
                                     	horasTotalMatriculaFinal += (parseInt(modulo.Horas_Asignadas) || 0);
-									
-									console.log("HORAS TOTAL MATRÍCULA FINAL = " + horasTotalMatriculaFinal);
                                 	
 		    						// Actualizar coste total
     								costeTotal = (parseFloat(costeTotal) || 0) + (parseFloat(costeModulo) || 0);
@@ -358,50 +362,22 @@ document.addEventListener('DOMContentLoaded', function() {
 								horasTotalFinal = parseInt(horasTotalPrimero) + parseInt(horasTotalSegundo);
 								costeTotalFinal = parseFloat(costeTotalPrimero) + parseFloat(costeTotalSegundo);
 								costeTotalAplazadoFinal = parseFloat(costeTotalAplazadoPrimero) + parseFloat(costeTotalAplazadoSegundo);
-
-								console.log("Horas Totales Primero = " + horasTotalPrimero);
-        						console.log("Coste Total Primero = " + costeTotalPrimero);
-								console.log("Coste Total Aplalzado Primero = " + costeTotalAplazadoPrimero);
-								console.log("Coste Total Primer Pago Aplazado Primero = " + costeTotalPrimerPagoAplazadoPrimero);
-								console.log("Coste Total Aplazado Mensual Primero = " + costeTotalAplazadoMensualPrimero);
-								
-								console.log("Horas Totales Segundo = " + horasTotalSegundo);
-        						console.log("Coste Total Segundo = " + costeTotalSegundo);
-								console.log("Coste Total Aplalzado Segundo = " + costeTotalAplazadoSegundo);
-								console.log("Coste Total Primer Pago Aplazado Segundo = " + costeTotalPrimerPagoAplazadoSegundo);
-								console.log("Coste Total Aplazado Mensual Segundo = " + costeTotalAplazadoMensualSegundo);
 							}
 							else {	
+    							let costeTotal = modulo.Curso == 1 ? costeTotalPrimero : costeTotalSegundo;
+    							let costeTotalAplazado = modulo.Curso == 1 ? costeTotalAplazadoPrimero : costeTotalAplazadoSegundo;
+								let costeTotalPrimerPagoAplazado = modulo.Curso == 1 ? costeTotalPrimerPagoAplazadoPrimero : costeTotalPrimerPagoAplazadoSegundo;
+    							let costeTotalAplazadoMensual = modulo.Curso == 1 ? costeTotalAplazadoMensualPrimero : costeTotalAplazadoMensualSegundo;
+								
 								horasTotalFinal = parseInt(horasTotalPrimero) + parseInt(horasTotalSegundo);
 								
-								document.querySelector('input[name="nombre-idModulo-' + idModulo + '"]').value = "";
-                				document.querySelector('input[name="horas-idModulo-' + idModulo + '"]').value = "";
+								document.querySelector('input[name="nombre-idModulo-' + idModulo + '"]').value = modulo.Nombre;
+								document.querySelector('input[name="horas-idModulo-' + idModulo + '"]').value = modulo.Horas_Asignadas;
                     			document.querySelector('input[name="coste-idModulo-' + idModulo + '"]').value = "";
                     			document.querySelector('input[name="coste-idModulo-aplazado-' + idModulo + '"]').value = "";
-								document.querySelector('input[name="primer_pago-idModulo-aplazado-' + idModulo + '"]').value = "";
+								document.querySelector('input[name="primer_pago-idModulo-aplazado-' + idModulo + '"]').value = ""
 								document.querySelector('input[name="coste-idModulo-aplazado-mensual-' + idModulo + '"]').value = "";
-								
-								console.log(document.querySelector('input[name="nombre-idModulo-' + idModulo + '"]').value);
-								console.log(document.querySelector('input[name="horas-idModulo-' + idModulo + '"]').value);
-								console.log(document.querySelector('input[name="coste-idModulo-' + idModulo + '"]').value);
-								console.log(document.querySelector('input[name="coste-idModulo-aplazado-' + idModulo + '"]').value);
-								console.log(document.querySelector('input[name="primer_pago-idModulo-aplazado-' + idModulo + '"]').value);
-								console.log(document.querySelector('input[name="coste-idModulo-aplazado-mensual-' + idModulo + '"]').value);
-								
-								console.log("Horas Totales Primero = " + horasTotalPrimero);
-        						console.log("Coste Total Primero = " + costeTotalPrimero);
-								console.log("Coste Total Aplalzado Primero = " + costeTotalAplazadoPrimero);
-								console.log("Coste Total Primer Pago Aplazado Primero = " + costeTotalPrimerPagoAplazadoPrimero);
-								console.log("Coste Total Aplazado Mensual Primero = " + costeTotalAplazadoMensualPrimero);
-								
-								console.log("Horas Totales Segundo = " + horasTotalSegundo);
-        						console.log("Coste Total Segundo = " + costeTotalSegundo);
-								console.log("Coste Total Aplalzado Segundo = " + costeTotalAplazadoSegundo);
-								console.log("Coste Total Primer Pago Aplazado Segundo = " + costeTotalPrimerPagoAplazadoSegundo);
-								console.log("Coste Total Aplazado Mensual Segundo = " + costeTotalAplazadoMensualSegundo);
 							}
-							
-							console.log("Horas Totales = " + parseInt(horasTotalPrimero + horasTotalSegundo));
 							
 							//Comprobación de horas totales seleccionadas
 							if (horasTotalMatriculaFinal > 1000) {
@@ -429,19 +405,30 @@ document.addEventListener('DOMContentLoaded', function() {
 							document.querySelector('input[name="coste-total-final"]').value = costeTotalFinal;
 							document.querySelector('input[name="coste-total-aplazado-final"]').value = costeTotalAplazadoFinal;
 							
-							console.log("Coste Total Final = " + costeTotalFinal);
-							console.log("Coste Total Aplazado Final = " + costeTotalAplazadoFinal);
+							//Cálculo de régimen económico
+							let preinscripcionRE= calcularCostePreinscripcion(costeTotalPrimero, costeTotalSegundo, costePreinscripcion);
+							let matriculaContadoPrimeroRE = calcularMatriculaContadoPrimero(costeTotalPrimero, costeTotalSegundo, costePreinscripcion);
+							let primerPagoAplPrimeroConPreinsRE = primerPagoAplConPreinsPrimero(costeTotalAplazadoPrimero, costePreinscripcion, porcentajePagoAplazado);
+							let segundoPagoAplPrimeroConPreinsRE = segundoPagoAplConPreinsPrimero(costeTotalAplazadoPrimero, costePreinscripcion, porcentajePagoAplazado);
+							let mensualidadesPrimeroRE = mensualidadesPrimero(costeTotalAplazadoPrimero, costePreinscripcion, porcentajePagoAplazado, numMensualidadesPrimero);
+							let primerPagoAplPrimeroSinPreinsRE = primerPagoAplSinPreinsPrimero(costeTotalAplazadoPrimero, costePreinscripcion, porcentajePagoAplazado);
+							let segundoPagoAplPrimeroSinPreinsRE = segundoPagoAplSinPreinsPrimero(costeTotalAplazadoPrimero, costePreinscripcion, porcentajePagoAplazado);
+							let costeTotalAplPrimeroRE = costeTotalAplPrimero(costeTotalPrimero, costeTotalAplazadoPrimero, costePreinscripcion);
 							
-							//Datos de régimen económico
-							let costePreinscripcionFinal = 0;
+							console.log("preinscripcionRE === " + preinscripcionRE);
+							console.log("matriculaContadoPrimeroRE === " + matriculaContadoPrimeroRE);
+							console.log("primerPagoAplPrimeroConPreinsRE === " + primerPagoAplPrimeroConPreinsRE);
+							console.log("segundoPagoAplPrimeroConPreinsRE === " + segundoPagoAplPrimeroConPreinsRE);
+							console.log("mensualidadesPrimeroRE === " + mensualidadesPrimeroRE);
+							console.log("primerPagoAplPrimeroSinPreinsRE === " + primerPagoAplPrimeroSinPreinsRE);
+							console.log("segundoPagoAplPrimeroSinPreinsRE === " + segundoPagoAplPrimeroSinPreinsRE);
+							console.log("costeTotalAplPrimeroRE === " + costeTotalAplPrimeroRE);
 							
-							let costeMatriculaPrimero = 0;
-							let costePrimerPagoAplazadoPrimeroConMatriculaFinal = 0;
-							let costeSegundoPagoAplazadoPrimeroConMatriculaFinal = 0;
-							let costePrimerPagoAplazadoPrimeroSinMatriculaFinal = 0;
-							let costeSegundoPagoAplazadoPrimeroSinMatriculaFinal = 0;
-							let costeTotalAplazadoMensualPrimeroFinal = 0;
-							let costeTotalAplazadoPrimeroFinal = 0;
+							
+							
+							
+							
+							
 							
 							let costeMatriculaSegundo = 0;
 							let costePrimerPagoAplazadoSegundoConMatriculaFinal = 0;
@@ -451,45 +438,12 @@ document.addEventListener('DOMContentLoaded', function() {
 							let costeTotalAplazadoMensualSegundoFinal = 0;
 							let costeTotalAplazadoSegundoFinal = 0;
 							
-							if((costeTotalPrimero + costeTotalSegundo) > costePreinscripcion)
-								costePreinscripcionFinal = costePreinscripcion;
-							else
-								costePreinscripcionFinal = costeTotalPrimero + costeTotalSegundo;
+							
+							
+							
+							
 						
-							if(costeTotalPrimero < costePreinscripcion){
-								//costePreinscripcionFinal = costeTotalPrimero;
-								
-								if(costeTotalSegundo > costePreinscripcion)
-									costeMatriculaPrimero = costeTotalPrimero;
-								else
-									costeMatriculaPrimero = 0;
-								
-								costePrimerPagoAplazadoPrimeroConMatriculaFinal = 0;
-								costeSegundoPagoAplazadoPrimeroConMatriculaFinal = 0;
-								costePrimerPagoAplazadoPrimeroSinMatriculaFinal = 0;
-								costeSegundoPagoAplazadoPrimeroSinMatriculaFinal = 0;
-								costeTotalAplazadoMensualPrimeroFinal = 0;
-								costeTotalAplazadoPrimeroFinal = 0;
-							}
-							else{
-								costeMatriculaPrimero = parseFloat(costeTotalPrimero - costePreinscripcion).toFixed(2);
-								
-								costePrimerPagoAplazadoPrimeroConMatriculaFinal = costeTotalPrimerPagoAplazadoPrimero - costePreinscripcionFinal;
-								costePrimerPagoAplazadoPrimeroConMatriculaFinal = parseFloat(costePrimerPagoAplazadoPrimeroConMatriculaFinal / 2).toFixed(2);
-								
-								costeSegundoPagoAplazadoPrimeroConMatriculaFinal = costeTotalPrimerPagoAplazadoPrimero - costePreinscripcionFinal;
-								costeSegundoPagoAplazadoPrimeroConMatriculaFinal = parseFloat(costeSegundoPagoAplazadoPrimeroConMatriculaFinal / 2).toFixed(2);
-								
-								costePrimerPagoAplazadoPrimeroSinMatriculaFinal = costeTotalPrimerPagoAplazadoPrimero + costePreinscripcionFinal;
-								costePrimerPagoAplazadoPrimeroSinMatriculaFinal = parseFloat(costePrimerPagoAplazadoPrimeroSinMatriculaFinal / 2).toFixed(2);
-								
-								costeSegundoPagoAplazadoPrimeroSinMatriculaFinal = costeTotalPrimerPagoAplazadoPrimero - costePreinscripcionFinal;
-								costeSegundoPagoAplazadoPrimeroSinMatriculaFinal = parseFloat(costeSegundoPagoAplazadoPrimeroSinMatriculaFinal / 2).toFixed(2);	
-								
-								costeTotalAplazadoMensualPrimeroFinal = costeTotalAplazadoMensualPrimero;
-								
-								costeTotalAplazadoPrimeroFinal = costeTotalAplazadoPrimero;
-							}
+							
 							
 							if (costeTotalSegundo < costePreinscripcion){
 								if(costeTotalPrimero > costePreinscripcion)
@@ -514,16 +468,16 @@ document.addEventListener('DOMContentLoaded', function() {
 							else{							
 								costeMatriculaSegundo = parseFloat(costeTotalSegundo - costePreinscripcion).toFixed(2);
 								
-								costePrimerPagoAplazadoSegundoConMatriculaFinal = costeTotalPrimerPagoAplazadoSegundo - costePreinscripcionFinal;
+								costePrimerPagoAplazadoSegundoConMatriculaFinal = costeTotalPrimerPagoAplazadoSegundo - preinscripcionRE;
 								costePrimerPagoAplazadoSegundoConMatriculaFinal = parseFloat(costePrimerPagoAplazadoSegundoConMatriculaFinal / 2).toFixed(2);
 								
-								costeSegundoPagoAplazadoSegundoConMatriculaFinal = costeTotalPrimerPagoAplazadoSegundo - costePreinscripcionFinal;
+								costeSegundoPagoAplazadoSegundoConMatriculaFinal = costeTotalPrimerPagoAplazadoSegundo - preinscripcionRE;
 								costeSegundoPagoAplazadoSegundoConMatriculaFinal = parseFloat(costeSegundoPagoAplazadoSegundoConMatriculaFinal / 2).toFixed(2);
 								
-								costePrimerPagoAplazadoSegundoSinMatriculaFinal = costeTotalPrimerPagoAplazadoSegundo + costePreinscripcionFinal;
+								costePrimerPagoAplazadoSegundoSinMatriculaFinal = costeTotalPrimerPagoAplazadoSegundo + preinscripcionRE;
 								costePrimerPagoAplazadoSegundoSinMatriculaFinal = parseFloat(costePrimerPagoAplazadoSegundoSinMatriculaFinal / 2).toFixed(2);
 								
-								costeSegundoPagoAplazadoSegundoSinMatriculaFinal = costeTotalPrimerPagoAplazadoSegundo - costePreinscripcionFinal;
+								costeSegundoPagoAplazadoSegundoSinMatriculaFinal = costeTotalPrimerPagoAplazadoSegundo - preinscripcionRE;
 								costeSegundoPagoAplazadoSegundoSinMatriculaFinal = parseFloat(costeSegundoPagoAplazadoSegundoSinMatriculaFinal / 2).toFixed(2);	
 								
 								costeTotalAplazadoMensualSegundoFinal = costeTotalAplazadoMensualSegundo;
@@ -536,22 +490,22 @@ document.addEventListener('DOMContentLoaded', function() {
 								costePrimerPagoAplazadoSegundoConMatriculaFinal = costePrimerPagoAplazadoSegundoSinMatriculaFinal;
 							}
 							
-							document.querySelector('input[name="coste-preinscripcion"]').value = costePreinscripcionFinal;	
+							document.querySelector('input[name="coste-preinscripcion"]').value = preinscripcionRE;	
 							
 							//Primero
-							document.querySelector('input[name="coste-matricula-primero"]').value = costeMatriculaPrimero;
+							document.querySelector('input[name="coste-matricula-primero"]').value = matriculaContadoPrimeroRE;
 							
-							document.querySelector('input[name="coste-total-primer-pago-aplazado-con-preinscripcion-primero"]').value = costePrimerPagoAplazadoPrimeroConMatriculaFinal;
+							document.querySelector('input[name="coste-total-primer-pago-aplazado-con-preinscripcion-primero"]').value = primerPagoAplPrimeroConPreinsRE;
 							document.querySelector('input[name="fecha-segundo-pago-matricula-primero"]').value = fechaSegundoPagoAplazadoPrimero;
-							document.querySelector('input[name="coste-total-segundo-pago-aplazado-con-preinscripcion-primero"]').value = costeSegundoPagoAplazadoPrimeroConMatriculaFinal;
+							document.querySelector('input[name="coste-total-segundo-pago-aplazado-con-preinscripcion-primero"]').value = segundoPagoAplPrimeroConPreinsRE;
 							
-							document.querySelector('input[name="coste-total-primer-pago-aplazado-sin-preinscripcion-primero"]').value = costePrimerPagoAplazadoPrimeroSinMatriculaFinal;
+							document.querySelector('input[name="coste-total-primer-pago-aplazado-sin-preinscripcion-primero"]').value = primerPagoAplPrimeroSinPreinsRE;
 							document.querySelector('input[name="fecha-segundo-pago-matricula-primero"]').value = fechaSegundoPagoAplazadoPrimero;
-							document.querySelector('input[name="coste-total-segundo-pago-aplazado-sin-preinscripcion-primero"]').value = costeSegundoPagoAplazadoPrimeroSinMatriculaFinal;
+							document.querySelector('input[name="coste-total-segundo-pago-aplazado-sin-preinscripcion-primero"]').value = segundoPagoAplPrimeroSinPreinsRE;
 							
-							document.querySelector('input[name="numero-mensualidades-primero"]').value = numeroMensualidadesPrimero;
+							document.querySelector('input[name="numero-mensualidades-primero"]').value = numMensualidadesPrimero;
 							document.querySelector('input[name="rango-mensualidades-primero"]').value = rangoMensualidadesPrimero;
-							document.querySelector('input[name="coste-mensual-primero"]').value = costeTotalAplazadoMensualPrimeroFinal;	
+							document.querySelector('input[name="coste-mensual-primero"]').value = mensualidadesPrimeroRE;	
 							
 							//Segundo			
 							document.querySelector('input[name="coste-matricula-segundo"]').value = costeMatriculaSegundo;
@@ -577,7 +531,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     			// Añadir evento de cambio al select de "antiguo-alumno"
     			selectAntiguoAlumno.addEventListener('change', function() {
-        			console.log("El select de 'antiguo-alumno' ha cambiado.");
         			// Disparar manualmente el evento 'change' para cada checkbox
         			let opciones = document.querySelectorAll('input[type="checkbox"][name^="idModulo-"]');
         			opciones.forEach((opcion) => {
@@ -590,9 +543,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				let fechaNacimiento = Array.from(fechas).find(fecha => fecha.type === 'date');
 				
 				// Añadir evento de cambio al select de "antiguo-alumno"
-    			fechaNacimiento.addEventListener('change', function() {
-        			console.log("El campo fecha de 'fecha de nacimiento' ha cambiado.");
-        			
+    			fechaNacimiento.addEventListener('change', function() {	
 					//Comprobar mayoría de edad
 					const inputDate = new Date(fechaNacimiento.value);
             		const today = new Date();

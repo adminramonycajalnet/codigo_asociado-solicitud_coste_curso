@@ -14,10 +14,6 @@ function obtenerRangoMensualidades() {
     .then(data => {
         // Verificar si es realmente un array
         if (Array.isArray(data)) {
-			console.log("Tipo de data:", typeof data);
-        	console.log("Data es un array.");
-        
-        	// Iterar sobre los módulos
         	return data;
     	} else {
         	console.error("Data no es un array, verifique la estructura:", data);
