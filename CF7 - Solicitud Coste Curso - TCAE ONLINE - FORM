@@ -99,6 +99,7 @@
 [hidden coste-total-primer-pago-aplazado-sin-preinscripcion-primero]
 [hidden coste-total-segundo-pago-aplazado-sin-preinscripcion-primero]
 [hidden coste-mensual-primero]
+[hidden coste-total-aplazado-primero-regimen-economico]
 
 [hidden fecha-segundo-pago-matricula-segundo]
 [hidden numero-mensualidades-segundo]
@@ -108,6 +109,7 @@
 [hidden coste-total-primer-pago-aplazado-sin-preinscripcion-segundo]
 [hidden coste-total-segundo-pago-aplazado-sin-preinscripcion-segundo]
 [hidden coste-mensual-segundo]
+[hidden coste-total-aplazado-segundo-regimen-economico]
 
 [hidden coste-total-final]
 [hidden coste-total-aplazado-final]
@@ -351,8 +353,6 @@
       [acceptance consentimientoLOPDGDD] He leído y acepto la <a href="https://ramonycajal.net/politica-de-proteccion-de-datos/" target="_blank">política de protección de datos</a> del centro CES Ramón y Cajal.[/acceptance]
    [/uacf7-col]
 [/uacf7-row]
-
-[file presupuesto class:hidden-field filetypes:pdf limit:5mb]
 
 <br/>
 

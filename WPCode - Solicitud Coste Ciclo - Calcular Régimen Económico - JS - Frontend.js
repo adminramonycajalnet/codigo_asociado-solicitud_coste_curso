@@ -9,7 +9,7 @@ function calcularCostePreinscripcion(costeTotalPrimero, costeTotalSegundo, coste
 	return preinscripcion;
 }
 
-function calcularMatriculaContadoPrimero(costeTotalPrimero, costeTotalSegundo, costePreinscripcion) {
+function matriculaContadoConPreinsPrimero(costeTotalPrimero, costeTotalSegundo, costePreinscripcion) {
 	let matricula = 0;
 	
 	if(costeTotalPrimero < costePreinscripcion)
@@ -23,75 +23,55 @@ function calcularMatriculaContadoPrimero(costeTotalPrimero, costeTotalSegundo, c
 	return matricula;
 }
 
-function primerPagoAplConPreinsPrimero(costeTotalAplazadoPrimero, costePreinscripcion, porcentajePagoAplazado) {
-	let primerPagoAplazadoPrimero = 0;
+function primerPagoApl(costeTotalAplazado, costeTotalAplazadoPrimero, costePreinscripcion, porcentajePagoAplazado, preinscripcionPagada, curso) {
+	let primerPagoAplazado = 0;
 	
-	if(costeTotalAplazadoPrimero < costePreinscripcion)
-		primerPagoAplazadoPrimero = 0;
+	if(costeTotalAplazado < costePreinscripcion)
+		primerPagoAplazado = 0;
 	else{
-		primerPagoAplazadoPrimero = parseFloat(costeTotalAplazadoPrimero) - parseFloat(costePreinscripcion);
-		primerPagoAplazadoPrimero = primerPagoAplazadoPrimero * (parseFloat(porcentajePagoAplazado) / 100);
-		primerPagoAplazadoPrimero = parseFloat(primerPagoAplazadoPrimero / 2).toFixed(2);
+		primerPagoAplazado = costeTotalAplazado * (parseFloat(porcentajePagoAplazado) / 100);
+		primerPagoAplazado = parseFloat(primerPagoAplazado) - parseFloat(costePreinscripcion);
+		
+		primerPagoAplazado = parseFloat(primerPagoAplazado / 2).toFixed(2);
+		
+		if(curso == 1){
+			if(preinscripcionPagada == false)
+				primerPagoAplazado = parseFloat(primerPagoAplazado) +  parseFloat(costePreinscripcion);
+		}
+		else if(curso == 2){
+			if(costeTotalAplazadoPrimero < costePreinscripcion && preinscripcionPagada == false)
+				primerPagoAplazado = parseFloat(primerPagoAplazado) + parseFloat(costePreinscripcion);
+		}
 	}
 		
-	return primerPagoAplazadoPrimero;
+	return parseFloat(primerPagoAplazado).toFixed(2);
 }
 
-function segundoPagoAplConPreinsPrimero(costeTotalAplazadoPrimero, costePreinscripcion, porcentajePagoAplazado) {
-	let segundoPagoAplazadoPrimero = 0;
+function segundoPagoApl(costeTotalAplazado, costePreinscripcion, porcentajePagoAplazado) {
+	let segundoPagoAplazado = 0;
 	
-	if(costeTotalAplazadoPrimero < costePreinscripcion)
-		segundoPagoAplazadoPrimero = 0;
+	if(costeTotalAplazado < costePreinscripcion)
+		segundoPagoAplazado = 0;
 	else{
-		segundoPagoAplazadoPrimero = parseFloat(costeTotalAplazadoPrimero) - parseFloat(costePreinscripcion);
-		segundoPagoAplazadoPrimero = segundoPagoAplazadoPrimero * (parseFloat(porcentajePagoAplazado) / 100);
-		segundoPagoAplazadoPrimero = parseFloat(segundoPagoAplazadoPrimero / 2).toFixed(2);
+		segundoPagoAplazado = costeTotalAplazado * (parseFloat(porcentajePagoAplazado) / 100);
+		segundoPagoAplazado = parseFloat(segundoPagoAplazado) - parseFloat(costePreinscripcion);
+		segundoPagoAplazado = parseFloat(segundoPagoAplazado / 2).toFixed(2);
 	}
 		
-	return segundoPagoAplazadoPrimero;
+	return segundoPagoAplazado;
 }
 
-function mensualidadesPrimero(costeTotalAplazadoPrimero, costePreinscripcion, porcentajePagoAplazado, numMensualidadesPrimero) {
-	let mensualidadesPrimero = 0;
+function mensualidades(costeTotalAplazado, costePreinscripcion, porcentajePagoAplazado, numMensualidades) {
+	let mensualidades = 0;
 	
-	if(costeTotalAplazadoPrimero < costePreinscripcion)
-		mensualidadesPrimero = 0;
+	if(costeTotalAplazado < costePreinscripcion)
+		mensualidades = 0;
 	else{
-		mensualidadesPrimero = parseFloat(costeTotalAplazadoPrimero) - parseFloat(costePreinscripcion);
-		mensualidadesPrimero = mensualidadesPrimero * (parseFloat(100 - porcentajePagoAplazado) / 100);
-		mensualidadesPrimero = parseFloat(mensualidadesPrimero / numMensualidadesPrimero).toFixed(2);
+		mensualidades = costeTotalAplazado * (parseFloat(100 - porcentajePagoAplazado) / 100);
+		mensualidades = parseFloat(mensualidades / numMensualidades).toFixed(2);
 	}
 		
-	return mensualidadesPrimero;
-}
-
-function primerPagoAplSinPreinsPrimero(costeTotalAplazadoPrimero, costePreinscripcion, porcentajePagoAplazado) {
-	let primerPagoAplazadoPrimero = 0;
-	
-	if(costeTotalAplazadoPrimero < costePreinscripcion)
-		primerPagoAplazadoPrimero = 0;
-	else{
-		primerPagoAplazadoPrimero = parseFloat(costeTotalAplazadoPrimero) - parseFloat(costePreinscripcion);
-		primerPagoAplazadoPrimero = primerPagoAplazadoPrimero * (parseFloat(porcentajePagoAplazado) / 100);
-		primerPagoAplazadoPrimero = parseFloat(primerPagoAplazadoPrimero / 2).toFixed(2);
-		primerPagoAplazadoPrimero = parseFloat(primerPagoAplazadoPrimero) +  parseFloat(costePreinscripcion);
-	}
-		
-	return parseFloat(primerPagoAplazadoPrimero).toFixed(2);
-}
-
-function segundoPagoAplSinPreinsPrimero(costeTotalAplazadoPrimero, costePreinscripcion, porcentajePagoAplazado) {
-	let segundoPagoAplazadoPrimero = 0;
-	
-	if(costeTotalAplazadoPrimero < costePreinscripcion)
-		segundoPagoAplazadoPrimero = 0;
-	else{
-		segundoPagoAplazadoPrimero = parseFloat(costeTotalAplazadoPrimero) - parseFloat(costePreinscripcion);
-		segundoPagoAplazadoPrimero = segundoPagoAplazadoPrimero * (parseFloat(porcentajePagoAplazado) / 100);
-		segundoPagoAplazadoPrimero = parseFloat(segundoPagoAplazadoPrimero / 2).toFixed(2);
-	}
-		
-	return segundoPagoAplazadoPrimero;
+	return mensualidades;
 }
 
 function costeTotalAplPrimero(costeTotalPrimero, costeTotalAplazadoPrimero, costePreinscripcion) {
@@ -103,4 +83,29 @@ function costeTotalAplPrimero(costeTotalPrimero, costeTotalAplazadoPrimero, cost
 		costePrimero = costeTotalAplazadoPrimero;
 							
 	return costePrimero;
+}
+
+function matriculaContadoConPreinsSegundo(costeTotalSegundo, costeTotalPrimero, costePreinscripcion) {
+	let matricula = 0;
+	
+	if (costeTotalSegundo < costePreinscripcion){
+		if(costeTotalPrimero > costePreinscripcion)
+			matricula = costeTotalSegundo;
+		else{
+			if(costeTotalSegundo == 0)
+				matricula = 0;
+			else
+				if (costeTotalPrimero > 0)
+					matricula = parseFloat(costeTotalSegundo - (costePreinscripcion  - costeTotalPrimero)).toFixed(2);
+				else
+					matricula = costeTotalSegundo;
+		}
+	}
+	else
+		if (costeTotalPrimero > costePreinscripcion)
+			matricula = costeTotalSegundo;
+		else
+			matricula = parseFloat(costeTotalSegundo - costePreinscripcion).toFixed(2);
+	
+	return matricula;
 }
