@@ -543,7 +543,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				let fechaNacimiento = Array.from(fechas).find(fecha => fecha.type === 'date');
 				
 				// Añadir evento de cambio al select de "antiguo-alumno"
-    			fechaNacimiento.addEventListener('change', function() {	
+    			fechaNacimiento.addEventListener('blur', function() {	
 					//Comprobar mayoría de edad
 					const inputDate = new Date(fechaNacimiento.value);
             		const today = new Date();
