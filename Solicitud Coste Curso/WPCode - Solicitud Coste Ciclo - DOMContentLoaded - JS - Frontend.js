@@ -550,7 +550,7 @@ document.addEventListener('DOMContentLoaded', function() {
     		if (age < 18 || (age === 18 && (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)))) {                		
                 Swal.fire({
   					title: "ERROR: Fecha de nacimiento incorrecta",
-  					html: "<p>" + fechaNacimiento.value + "</p>",
+  					html: "<p>Debe ser mayor de edad para poder matricularse</p><p>Por favor, revise si la fecha de nacimiento introducida es correcta.</p>",
   					icon: "error"
 				});
 				fechaNacimiento.value = ""; // Limpia el campo
