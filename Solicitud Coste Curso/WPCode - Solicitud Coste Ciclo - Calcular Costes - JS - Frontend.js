@@ -28,7 +28,6 @@ function calcularCosteModulo(modulo, seleccion, antiguoAlumno) {
             }
         }
     }
-   console.log("Coste = " + coste);
    return (Math.round(coste * 10) / 10).toFixed(2);
 }
 
@@ -51,6 +50,5 @@ function calcularCosteModuloAplazadoMensualidad(costeModuloAplazado, porcentajeP
 
 function calcularPrimerPagoModuloAplazado(costeModuloAplazado, porcentajePagoAplazado) {
 	let primerPagoModuloAplazado = (porcentajePagoAplazado / 100) * costeModuloAplazado;
-	console.log("Primer Pago Modulo Aplazado = " + primerPagoModuloAplazado);
 	return ((primerPagoModuloAplazado * 10) / 10).toFixed(2);
 }

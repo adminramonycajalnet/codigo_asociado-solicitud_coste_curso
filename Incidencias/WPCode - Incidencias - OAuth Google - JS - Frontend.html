@@ -1,0 +1,165 @@
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<script>
+  // Configura tu Client ID de Google aquí
+  const clientID = "1015547145850-f151k9lp5lc128gvpo0m59boss8n5ulf.apps.googleusercontent.com";  // Reemplaza 'TU_CLIENT_ID' con tu Client ID de Google
+  let inactivityTimeout;  // Variable para el temporizador
+
+  // Esta función se ejecuta cuando Google devuelve el token de autenticación
+  function handleCredentialResponse(response) {
+    console.log("ID Token: " + response.credential);
+
+    // Guarda el token en el almacenamiento local para futuras sesiones
+    localStorage.setItem('google_token', response.credential);
+
+    // Mostrar el contenido protegido y ocultar el botón de inicio de sesión
+    document.getElementById('content-protected').style.display = 'block';
+    document.getElementById('login-button').style.display = 'none';
+    document.getElementById('logout-button').style.display = 'inline-block';
+    console.log("Cierre de sesión habilitado");
+  }
+	
+  // Función para verificar si ya hay un token almacenado
+  function checkIfLoggedIn() {
+    const token = localStorage.getItem('google_token');
+    console.log("Token en localStorage:", token);
+
+    if (token) {
+      // Si ya hay un token, mostrar el contenido protegido y ocultar el botón de inicio de sesión
+      document.getElementById('content-protected').style.display = 'block';
+      document.getElementById('login-button').style.display = 'none';
+      document.getElementById('logout-button').style.display = 'inline-block';
+	  
+      console.log("Cierre de sesión disponible");
+    } else {
+      // Si no hay token, mostrar el botón de inicio de sesión
+      google.accounts.id.renderButton(
+        document.getElementById("login-button"),
+        { theme: "outline", size: "large" }
+      );
+      document.getElementById('logout-button').style.display = 'none';
+      console.log("Inicio de sesión habilitado");
+    }
+  }
+
+  // Inicializa el botón de inicio de sesión cuando la página se carga
+  window.onload = function () {
+    google.accounts.id.initialize({
+      client_id: clientID,  // Configura tu Client ID de Google
+      callback: handleCredentialResponse  // Función a ejecutar después del inicio de sesión
+    });
+
+    // Verificar si el usuario ya ha iniciado sesión
+    checkIfLoggedIn();
+  };
+
+  // Función para cerrar sesión
+  function logout() {
+    // Eliminar el token del almacenamiento local
+    localStorage.removeItem('google_token');
+    console.log("Sesión cerrada");
+
+    // Refrescar la página después de cerrar sesión
+    document.location.reload();
+  }
+
+  // Función para cerrar sesión después de 5 minutos de inactividad
+  function setInactivityTimer() {
+    // Cerrar sesión automáticamente después de 5 minutos (300000 milisegundos)
+    inactivityTimeout = setTimeout(function() {
+      console.log("Cerrando sesión por inactividad...");
+      logout();
+    }, 300000);  // 5 minutos en milisegundos
+  }
+
+  // Función para reiniciar el temporizador de inactividad
+  function resetInactivityTimer() {
+    clearTimeout(inactivityTimeout);  // Limpiar el temporizador anterior
+    setInactivityTimer();  // Reiniciar el temporizador
+  }
+
+  // Eventos que reinician el temporizador al detectar actividad del usuario
+  window.addEventListener('mousemove', resetInactivityTimer);  // Detecta movimiento del ratón
+  window.addEventListener('keydown', resetInactivityTimer);  // Detecta teclas presionadas
+</script>
+
+<!-- Botón de inicio de sesión -->
+<div id="login-button"><img src="https://ramonycajal.net/wp-content/uploads/2024/09/Logo-Google-2.png" alt="Google Logo" id="googleIcon">Iniciar sesión con Google</div>
+
+<!-- Botón de cierre de sesión -->
+<div class="button-container">
+	<button id="logout-button" style="display:none;" onclick="logout()">Cerrar sesión</button>
+</div>
+
+<!-- Contenedor protegido de Elementor (asignado con un ID único en Elementor) -->
+<style>
+  #content-protected {
+    display: none;  /* Ocultar el container hasta que el usuario inicie sesión */
+  }
+
+  /* Estilos personalizados para el botón de cierre de sesión */
+  #logout-button {
+    background-color: #192b77;  /* Color normal del botón */
+    color: white;  /* Color del texto */
+    border: none;
+    border-radius: 30px;  /* Botón más redondeado */
+    padding: 12px 24px;
+    font-size: 18px;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  /* Estilo en hover */
+  #logout-button:hover {
+    background-color: #eebfff;  /* Color del botón al hacer hover */
+  }
+
+  /* Estilo al hacer click (active) */
+  #logout-button:active {
+    background-color: #c31129;  /* Color del botón al hacer click */
+  }
+	
+/* Estilos personalizados para el botón de inicio de sesión */
+  #login-button {
+    display: flex; /* Para alinear el icono y el texto */
+  	align-items: center; /* Centrar verticalmente el contenido */
+  	background-color: white; /* Fondo blanco */
+  	color: #5f6368; /* Color del texto */
+  	border: 1px solid #dadce0; /* Borde gris claro */
+  	padding: 10px 24px; /* Espaciado interno */
+  	font-size: 16px; /* Tamaño de fuente */
+  	font-weight: 500; /* Peso de la fuente */
+  	border-radius: 24px; /* Bordes redondeados */
+  	cursor: pointer; /* Cursor de mano */
+  	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  	transition: box-shadow 0.2s ease, background-color 0.2s ease; /* Transición suave */
+  }
+	
+  #login-button img {
+  	width: 20px; /* Tamaño del icono de Google */
+  	height: 20px; /* Tamaño del icono de Google */
+  	margin-right: 12px; /* Espaciado entre el logo y el texto */
+  }
+	
+  #login-button:hover {
+  	background-color: #f7f8f8; /* Fondo ligeramente más claro al pasar el mouse */
+  	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+  }
+
+  #login-button:active {
+	background-color: #e8e8e8; /* Fondo gris claro cuando se hace clic */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Sombra más pequeña al hacer clic */
+  }
+
+  #login-button:focus {
+    outline: none; /* Eliminar el borde de enfoque */
+  }
+
+  /* Contenedor para alinear el botón a la derecha usando Flexbox */
+  .button-container {
+    display: flex;
+    justify-content: center;  /* Alinear el contenido (botón) a la derecha */
+    margin-top: 20px;
+    width: 100%;
+  }
+</style>

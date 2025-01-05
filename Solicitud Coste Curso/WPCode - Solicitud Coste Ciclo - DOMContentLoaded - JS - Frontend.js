@@ -339,8 +339,6 @@ document.addEventListener('DOMContentLoaded', function() {
     					}	
 					
 						let costeModulo = calcularCosteModulo(modulo, seleccion, antiguoAlumno);
-						
-						console.log("costeModulo = " + costeModulo);
 						let costeModuloAplazado = calcularCosteModuloAplazado(costeModulo, incrementoPagoAplazado);
 						let primerPagoModuloAplazado = calcularPrimerPagoModuloAplazado(costeModuloAplazado, porcentajePagoAplazado);
 						let costeModuloAplazadoMensual = calcularCosteModuloAplazadoMensualidad(costeModuloAplazado, porcentajePagoAplazado, modulo.Curso);
@@ -416,8 +414,6 @@ document.addEventListener('DOMContentLoaded', function() {
 						document.querySelector('input[name="primer_pago-idModulo-aplazado-' + idModulo + '"]').value = ""
 						document.querySelector('input[name="coste-idModulo-aplazado-mensual-' + idModulo + '"]').value = "";
 					}
-					
-					console.log("horasTotalMatriculaFinal = " + horasTotalMatriculaFinal);
 					
 					//Comprobación de horas totales seleccionadas
 					if (horasTotalMatriculaFinal > 1000) {
