@@ -232,97 +232,85 @@
       </label>
       [uacf7-row]
          [uacf7-col col:4] 
-            <label for="">Operaciones administrativas y documentación sanitaria</label>
+            <label for="">Anatomofisiología y patología básicas</label>
          [/uacf7-col]
          [uacf7-col col:4] 
-            <label for="">64 horas</label>
+            <label for="">160 horas</label>
          [/uacf7-col]
          [uacf7-col col:4]
-            [checkbox idModulo-5448 use_label_element exclusive "Matrícula" "Convalidación"]
+            [checkbox idModulo-61 use_label_element exclusive "Matrícula" "Convalidación"]
          [/uacf7-col]
       [/uacf7-row]
       <hr style="border: 1px solid #EEBF00;">
       [uacf7-row]
          [uacf7-col col:4] 
-            <label for="">Técnicas básicas de enfermería</label>
-         [/uacf7-col]
-         [uacf7-col col:4]
-            <label for="">384 horas</label>
-         [/uacf7-col] 
-         [uacf7-col col:4]
-            [checkbox idModulo-5449 use_label_element exclusive "Matrícula" "Convalidación"]
-         [/uacf7-col]
-      [/uacf7-row]
-      <hr style="border: 1px solid #EEBF00;">
-      [uacf7-row]
-         [uacf7-col col:4] 
-            <label for="">Higiene del medio hospitalario y limpieza del material</label>
+            <label for="">Dispensación de productos parafarmacéuticos</label>
          [/uacf7-col]
          [uacf7-col col:4]
             <label for="">160 horas</label>
          [/uacf7-col] 
          [uacf7-col col:4]
-            [checkbox idModulo-5450 use_label_element exclusive "Matrícula" "Convalidación"]
+            [checkbox idModulo-102 use_label_element exclusive "Matrícula" "Convalidación"]
          [/uacf7-col]
       [/uacf7-row]
       <hr style="border: 1px solid #EEBF00;">
       [uacf7-row]
          [uacf7-col col:4] 
-            <label for="">Promoción de la salud y apoyo psicológico al paciente</label>
+            <label for="">Disposición y venta de productos</label>
          [/uacf7-col]
          [uacf7-col col:4]
             <label for="">96 horas</label>
          [/uacf7-col] 
          [uacf7-col col:4]
-            [checkbox idModulo-5451 use_label_element exclusive "Matrícula" "Convalidación"]
+            [checkbox idModulo-99 use_label_element exclusive "Matrícula" "Convalidación"]
          [/uacf7-col]
       [/uacf7-row]
       <hr style="border: 1px solid #EEBF00;">
       [uacf7-row]
          [uacf7-col col:4] 
-            <label for="">Técnicas de ayuda odontológica / estomatológica</label>
+            <label for="">Operaciones básicas de laboratorio</label>
+         [/uacf7-col]
+         [uacf7-col col:4]
+            <label for="">256 horas</label>
+         [/uacf7-col] 
+         [uacf7-col col:4]
+            [checkbox idModulo-103 use_label_element exclusive "Matrícula" "Convalidación"]
+         [/uacf7-col]
+      [/uacf7-row]
+      <hr style="border: 1px solid #EEBF00;">
+      [uacf7-row]
+         [uacf7-col col:4] 
+            <label for="">Primeros auxilios</label>
+         [/uacf7-col]
+         [uacf7-col col:4]
+            <label for="">64 horas</label>
+         [/uacf7-col] 
+         [uacf7-col col:4]
+            [checkbox idModulo-20 use_label_element exclusive "Matrícula" "Convalidación"]
+         [/uacf7-col]
+      [/uacf7-row]
+      <hr style="border: 1px solid #EEBF00;">
+      [uacf7-row]
+         [uacf7-col col:4] 
+            <label for="">Promoción de la salud</label>
+         [/uacf7-col]
+         [uacf7-col col:4]
+            <label for="">128 horas</label>
+         [/uacf7-col] 
+         [uacf7-col col:4]
+            [checkbox idModulo-105 use_label_element exclusive "Matrícula" "Convalidación"]
+         [/uacf7-col]
+      [/uacf7-row]
+      <hr style="border: 1px solid #EEBF00;">
+      [uacf7-row]
+         [uacf7-col col:4] 
+            <label for="">Formación y orientación laboral</label>
          [/uacf7-col]
          [uacf7-col col:4]
             <label for="">96 horas</label>
          [/uacf7-col] 
          [uacf7-col col:4]
-            [checkbox idModulo-5457 use_label_element exclusive "Matrícula" "Convalidación"]
-         [/uacf7-col]
-      [/uacf7-row]
-      <hr style="border: 1px solid #EEBF00;">
-      [uacf7-row]
-         [uacf7-col col:4] 
-            <label for="">Relaciones en el entorno del trabajo</label>
-         [/uacf7-col]
-         [uacf7-col col:4]
-            <label for="">64 horas</label>
-         [/uacf7-col] 
-         [uacf7-col col:4]
-            [checkbox idModulo-5453 use_label_element exclusive "Matrícula" "Convalidación"]
-         [/uacf7-col]
-      [/uacf7-row]
-      <hr style="border: 1px solid #EEBF00;">
-      [uacf7-row]
-         [uacf7-col col:4] 
-            <label for="">El sector de la Sanidad en Andalucía</label>
-         [/uacf7-col]
-         [uacf7-col col:4]
-            <label for="">32 horas</label>
-         [/uacf7-col] 
-         [uacf7-col col:4]
-            [checkbox idModulo-5452 use_label_element exclusive "Matrícula" "Convalidación"]
-         [/uacf7-col]
-      [/uacf7-row]
-      <hr style="border: 1px solid #EEBF00;">
-      [uacf7-row]
-         [uacf7-col col:4] 
-            <label for="">Formación y Orientación Laboral (F.O.L.)</label>
-         [/uacf7-col]
-         [uacf7-col col:4]
-            <label for="">64 horas</label>
-         [/uacf7-col] 
-         [uacf7-col col:4]
-            [checkbox idModulo-5458 use_label_element exclusive "Matrícula" "Convalidación"]
+            [checkbox idModulo-106 use_label_element exclusive "Matrícula" "Convalidación"]
          [/uacf7-col]
       [/uacf7-row]
    [/uacf7-col]
@@ -332,13 +320,25 @@
       </label>
       [uacf7-row]
          [uacf7-col col:4] 
-            <label for="">Proyecto integrado Cuidados Auxiliares de Enfermería</label>
+            <label for="">Dispensación de productos farmacéuticos</label>
          [/uacf7-col]
          [uacf7-col col:4]
-            <label for="">60 horas</label>
+            <label for="">147 horas</label>
          [/uacf7-col] 
          [uacf7-col col:4]
-            [checkbox idModulo-5455 use_label_element exclusive "Matrícula" "Convalidación"]
+            [checkbox idModulo-101 use_label_element exclusive "Matrícula" "Convalidación"]
+         [/uacf7-col]
+      [/uacf7-row]
+      <hr style="border: 1px solid #EEBF00;">
+      [uacf7-row]
+         [uacf7-col col:4] 
+            <label for="">Empresa e iniciativa emprendedora</label>
+         [/uacf7-col]
+         [uacf7-col col:4]
+            <label for="">84 horas</label>
+         [/uacf7-col] 
+         [uacf7-col col:4]
+            [checkbox idModulo-107 use_label_element exclusive "Matrícula" "Convalidación"]
          [/uacf7-col]
       [/uacf7-row]
       <hr style="border: 1px solid #EEBF00;">
@@ -347,13 +347,48 @@
             <label for="">Formación en centros de trabajo (F.C.T.)</label>
          [/uacf7-col]
          [uacf7-col col:4]
-            <label for="">380 horas</label>
+            <label for="">410 horas</label>
          [/uacf7-col] 
          [uacf7-col col:4]
-            [checkbox idModulo-5456 use_label_element exclusive "Matrícula" "Convalidación"]
+            [checkbox idModulo-108 use_label_element exclusive "Matrícula" "Convalidación"]
          [/uacf7-col]
-      <hr style="border: 1px solid #EEBF00;">
       [/uacf7-row]
+      <hr style="border: 1px solid #EEBF00;">
+      [uacf7-row]
+         [uacf7-col col:4] 
+            <label for="">Formulación magistral</label>
+         [/uacf7-col]
+         [uacf7-col col:4]
+            <label for="">189 horas</label>
+         [/uacf7-col] 
+         [uacf7-col col:4]
+            [checkbox idModulo-104 use_label_element exclusive "Matrícula" "Convalidación"]
+         [/uacf7-col]
+      [/uacf7-row]
+      <hr style="border: 1px solid #EEBF00;">
+      [uacf7-row]
+         [uacf7-col col:4] 
+            <label for="">Oficina de farmacia</label>
+         [/uacf7-col]
+         [uacf7-col col:4]
+            <label for="">147 horas</label>
+         [/uacf7-col] 
+         [uacf7-col col:4]
+            [checkbox idModulo-100 use_label_element exclusive "Matrícula" "Convalidación"]
+         [/uacf7-col]
+      [/uacf7-row]
+      <hr style="border: 1px solid #EEBF00;">
+      [uacf7-row]
+         [uacf7-col col:4] 
+            <label for="">Horas de libre configuración	</label>
+         [/uacf7-col]
+         [uacf7-col col:4]
+            <label for="">63 horas</label>
+         [/uacf7-col] 
+         [uacf7-col col:4]
+            [checkbox idModulo-0 use_label_element exclusive "Matrícula" "Convalidación"]
+         [/uacf7-col]
+      [/uacf7-row]    
    [/uacf7-col]
 [/uacf7-row]
 </div>
