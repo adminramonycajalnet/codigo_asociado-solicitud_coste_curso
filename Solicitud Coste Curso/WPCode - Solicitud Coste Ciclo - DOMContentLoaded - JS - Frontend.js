@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
         				};
     				}
 						
-				opcion.addEventListener('click', (event) =>{
+				opcion.addEventListener('change', (event) =>{
 					const estadoAnterior = valoresGrupos[grupo].valorActual;
 							
 					if (!opcion.checked) 
@@ -249,10 +249,12 @@ document.addEventListener('DOMContentLoaded', function() {
         			const estadoActual = valoresGrupos[grupo].valorActual;
 							
 					// Restar horas previas de las totales generales y de matrícula
-                    if (!opcion.checked)
+                    if (!opcion.checked && estadoAnterior === "Matrícula")
                     	restaPrevias = true;
 					else if (estadoActual === "Matrícula" && estadoAnterior === "Convalidación")
 						restaPrevias = false;
+					else if(estadoActual === "Convalidación" && estadoAnterior === "")
+							restaPrevias = false;
 					else if (estadoActual == "Convalidación" && estadoAnterior == "Matrícula"){
 						restaPrevias = true;
 						horasTotalMatriculaFinal -= horasPrevias;
@@ -261,12 +263,16 @@ document.addEventListener('DOMContentLoaded', function() {
 					
 					// Incrementar o restar según corresponda
 					if (restaPrevias == true) {
-                    	if (modulo.Curso == 1) 
+                    	if (modulo.Curso == 1) {
                            	horasTotalPrimero -= horasPrevias;
-                         else if (modulo.Curso == 2)
+							
+						}
+                         else if (modulo.Curso == 2){
                          	horasTotalSegundo -= horasPrevias;
+							 
+						 }
 					    
-						horasTotalMatriculaFinal -= (opcion.value === "Matrícula")  ? horasPrevias : 0;
+						horasTotalMatriculaFinal -= (opcion.value == "Matrícula")  ? horasPrevias : 0;
 					}   	
 					// Actualizar valor previo
         			valoresGrupos[grupo].valorPrevio = estadoActual;
@@ -282,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					if(horasTotal > 0)
     					horasTotal -= parseInt(horasPrevias) || 0;
 								
-					costeTotal = parseFloat(costeTotal - costePrevio).toFixed(2);
+					costeTotal = parseFloat(costeTotal - costePrevio).toFixed(2);//
     				costeTotalAplazado = parseFloat(costeTotalAplazado - costeAplazadoPrevio).toFixed(2);		
 					
 					costeTotalPrimerPagoAplazado = parseFloat(costeTotalPrimerPagoAplazado - costePrimerPagoAplazadoPrevio).toFixed(2);
@@ -397,12 +403,6 @@ document.addEventListener('DOMContentLoaded', function() {
     						}
 						}
 						
-						console.log("horasTotalSegundo = " + horasTotalSegundo);
-						console.log("costeTotalSegundo = " + costeTotalSegundo);
-						console.log("costeTotalAplazadoSegundo = " + costeTotalAplazadoSegundo);								
-						console.log("costeTotalPrimerPagoAplazadoSegundo = " + costeTotalPrimerPagoAplazadoSegundo);
-						console.log("costeTotalAplazadoMensualSegundo = " + costeTotalAplazadoMensualSegundo);
-						
 						horasTotalFinal = parseInt(horasTotalPrimero) + parseInt(horasTotalSegundo);
 						costeTotalFinal = parseFloat(costeTotalPrimero) + parseFloat(costeTotalSegundo);
 						costeTotalAplazadoFinal = parseFloat(costeTotalAplazadoPrimero) + parseFloat(costeTotalAplazadoSegundo);
@@ -421,6 +421,8 @@ document.addEventListener('DOMContentLoaded', function() {
 						document.querySelector('input[name="primer_pago-idModulo-aplazado-' + idModulo + '"]').value = ""
 						document.querySelector('input[name="coste-idModulo-aplazado-mensual-' + idModulo + '"]').value = "";
 					}
+					
+					console.log("horasTotalMatriculaFinal 1 = " + horasTotalMatriculaFinal);
 					
 					//Comprobación de horas totales seleccionadas
 					if (horasTotalMatriculaFinal > 1000) {
@@ -530,11 +532,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     	// Añadir evento de cambio al select de "antiguo-alumno"
     	selectAntiguoAlumno.addEventListener('change', function() {
+			horasTotalMatriculaFinal = 0;
+			
         	// Disparar manualmente el evento 'change' para cada checkbox
         	let opciones = document.querySelectorAll('input[type="checkbox"][name^="idModulo-"]');
         	opciones.forEach((opcion) => {
 				if (opcion.checked)
-            		opcion.dispatchEvent(new Event('change'));
+            		opcion.dispatchEvent(new Event('change'));	
         	});
     	});
 			
