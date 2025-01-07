@@ -341,7 +341,8 @@ document.addEventListener('DOMContentLoaded', function() {
 						let costeModulo = calcularCosteModulo(modulo, seleccion, antiguoAlumno);
 						let costeModuloAplazado = calcularCosteModuloAplazado(costeModulo, incrementoPagoAplazado);
 						let primerPagoModuloAplazado = calcularPrimerPagoModuloAplazado(costeModuloAplazado, porcentajePagoAplazado);
-						let costeModuloAplazadoMensual = calcularCosteModuloAplazadoMensualidad(costeModuloAplazado, porcentajePagoAplazado, modulo.Curso);
+						let numMensualidades = modulo.Curso == 1 ? numMensualidadesPrimero : numMensualidadesSegundo;
+						let costeModuloAplazadoMensual = calcularCosteModuloAplazadoMensualidad(costeModuloAplazado, porcentajePagoAplazado, modulo.Curso,  numMensualidades);
 
 						//Asignar el coste al campo oculto correspondiente al módulo.
 						document.querySelector('input[name="coste-idModulo-' + idModulo + '"]').value = costeModulo;
@@ -395,7 +396,13 @@ document.addEventListener('DOMContentLoaded', function() {
         						costeTotalAplazadoMensualSegundo = costeTotalAplazadoMensual;
     						}
 						}
-								
+						
+						console.log("horasTotalSegundo = " + horasTotalSegundo);
+						console.log("costeTotalSegundo = " + costeTotalSegundo);
+						console.log("costeTotalAplazadoSegundo = " + costeTotalAplazadoSegundo);								
+						console.log("costeTotalPrimerPagoAplazadoSegundo = " + costeTotalPrimerPagoAplazadoSegundo);
+						console.log("costeTotalAplazadoMensualSegundo = " + costeTotalAplazadoMensualSegundo);
+						
 						horasTotalFinal = parseInt(horasTotalPrimero) + parseInt(horasTotalSegundo);
 						costeTotalFinal = parseFloat(costeTotalPrimero) + parseFloat(costeTotalSegundo);
 						costeTotalAplazadoFinal = parseFloat(costeTotalAplazadoPrimero) + parseFloat(costeTotalAplazadoSegundo);
@@ -452,7 +459,8 @@ document.addEventListener('DOMContentLoaded', function() {
 					let matriculaContadoConPreinsPrimeroRE = matriculaContadoConPreinsPrimero(costeTotalPrimero, costeTotalSegundo, costePreinscripcion);
 					let primerPagoAplPrimeroConPreinsRE = primerPagoApl(costeTotalAplazadoPrimero, costeTotalAplazadoPrimero, 
 																		costePreinscripcion, porcentajePagoAplazado, true, 1);
-					let segundoPagoPrimeroRE = segundoPagoApl(costeTotalAplazadoPrimero, costePreinscripcion, porcentajePagoAplazado);
+					let segundoPagoPrimeroRE = segundoPagoApl(costeTotalAplazadoSegundo, costeTotalAplazadoPrimero, 
+																		costePreinscripcion, porcentajePagoAplazado, true, 1);
 					let primerPagoAplPrimeroSinPreinsRE = primerPagoApl(costeTotalAplazadoPrimero, costeTotalAplazadoPrimero, 
 																		costePreinscripcion, porcentajePagoAplazado, false, 1);
 					let mensualidadesPrimeroRE = mensualidades(costeTotalAplazadoPrimero, costePreinscripcion, porcentajePagoAplazado, numMensualidadesPrimero);
@@ -463,7 +471,8 @@ document.addEventListener('DOMContentLoaded', function() {
 					let primerPagoAplSegundoConPreinsRE = primerPagoApl(costeTotalAplazadoSegundo, costeTotalAplazadoPrimero, 
 																		costePreinscripcion, porcentajePagoAplazado, true, 2);
 					let mensualidadesSegundoRE = mensualidades(costeTotalAplazadoSegundo, costePreinscripcion, porcentajePagoAplazado, numMensualidadesSegundo);
-					let segundoPagoSegundoRE = segundoPagoApl(costeTotalAplazadoSegundo, costePreinscripcion, porcentajePagoAplazado);
+					let segundoPagoSegundoRE = segundoPagoApl(costeTotalAplazadoSegundo, costeTotalAplazadoPrimero, 
+																		costePreinscripcion, porcentajePagoAplazado, true, 2);
 					let primerPagoAplSegundoSinPreinsRE =  primerPagoApl(costeTotalAplazadoSegundo, costeTotalAplazadoPrimero, 
 																		 costePreinscripcion, porcentajePagoAplazado, false, 2);
 							

@@ -36,14 +36,11 @@ function calcularCosteModuloAplazado(costeModulo, incrementoPagoAplazado) {
 	return (Math.round(costeModuloAplazado * 10) / 10).toFixed(2);
 }
 
-function calcularCosteModuloAplazadoMensualidad(costeModuloAplazado, porcentajePagoAplazado, curso) {
+function calcularCosteModuloAplazadoMensualidad(costeModuloAplazado, porcentajePagoAplazado, curso, numMensualidades) {
 	let restoCosteModuloAplazado = ((100 - porcentajePagoAplazado) / 100) * costeModuloAplazado;
 	let costeModuloAplazadoMensualidad = 0;
 	
-	if(curso == 1)
-		costeModuloAplazadoMensualidad = restoCosteModuloAplazado / 8;
-	else
-		costeModuloAplazadoMensualidad = restoCosteModuloAplazado / 3;
+	costeModuloAplazadoMensualidad = restoCosteModuloAplazado / numMensualidades;
 
 	return ((costeModuloAplazadoMensualidad * 10) / 10).toFixed(2);
 }

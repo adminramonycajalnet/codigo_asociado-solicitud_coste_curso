@@ -30,10 +30,14 @@ function primerPagoApl(costeTotalAplazado, costeTotalAplazadoPrimero, costePrein
 		primerPagoAplazado = 0;
 	else{
 		primerPagoAplazado = costeTotalAplazado * (parseFloat(porcentajePagoAplazado) / 100);
-		primerPagoAplazado = parseFloat(primerPagoAplazado) - parseFloat(costePreinscripcion);
+		
+		if(curso == 2 && costeTotalAplazadoPrimero < costePreinscripcion && preinscripcionPagada == false)
+				primerPagoAplazado = parseFloat(primerPagoAplazado) - parseFloat(costePreinscripcion);
+		else if(curso == 1 && preinscripcionPagada == false)
+			primerPagoAplazado = parseFloat(primerPagoAplazado) - parseFloat(costePreinscripcion);
 		
 		primerPagoAplazado = parseFloat(primerPagoAplazado / 2).toFixed(2);
-		
+				
 		if(curso == 1){
 			if(preinscripcionPagada == false)
 				primerPagoAplazado = parseFloat(primerPagoAplazado) +  parseFloat(costePreinscripcion);
@@ -43,18 +47,23 @@ function primerPagoApl(costeTotalAplazado, costeTotalAplazadoPrimero, costePrein
 				primerPagoAplazado = parseFloat(primerPagoAplazado) + parseFloat(costePreinscripcion);
 		}
 	}
-		
+	
 	return parseFloat(primerPagoAplazado).toFixed(2);
 }
 
-function segundoPagoApl(costeTotalAplazado, costePreinscripcion, porcentajePagoAplazado) {
+function segundoPagoApl(costeTotalAplazado, costeTotalAplazadoPrimero, costePreinscripcion, porcentajePagoAplazado, preinscripcionPagada, curso) {
 	let segundoPagoAplazado = 0;
 	
 	if(costeTotalAplazado < costePreinscripcion)
 		segundoPagoAplazado = 0;
 	else{
 		segundoPagoAplazado = costeTotalAplazado * (parseFloat(porcentajePagoAplazado) / 100);
-		segundoPagoAplazado = parseFloat(segundoPagoAplazado) - parseFloat(costePreinscripcion);
+		
+		if(curso == 2 && costeTotalAplazadoPrimero < costePreinscripcion && preinscripcionPagada == false)
+				segundoPagoAplazado = parseFloat(segundoPagoAplazado) - parseFloat(costePreinscripcion);
+		else if(curso == 1 && preinscripcionPagada == false)
+			segundoPagoAplazado = parseFloat(segundoPagoAplazado) - parseFloat(costePreinscripcion);
+		
 		segundoPagoAplazado = parseFloat(segundoPagoAplazado / 2).toFixed(2);
 	}
 		
