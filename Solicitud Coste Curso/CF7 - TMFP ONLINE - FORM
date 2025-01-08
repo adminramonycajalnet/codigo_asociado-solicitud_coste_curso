@@ -208,6 +208,13 @@
       [/group]
    [/uacf7-col]
 [/uacf7-row]
+[uacf7-row]
+   [uacf7-col col:12]
+       [group grupo-antiguo-alumno-ano-obtencion]
+         <label for=""><span style="color:#C31129;">Se aplicará un 10% de descuento.</span></label>
+       [/group]
+   [/uacf7-col]
+[/uacf7-row]
 
 <br/>
 
@@ -350,7 +357,7 @@
             <label for="">410 horas</label>
          [/uacf7-col] 
          [uacf7-col col:4]
-            [checkbox idModulo-108 use_label_element exclusive "Matrícula" "Excención"]
+            [checkbox idModulo-108 use_label_element exclusive "Matrícula" "Convalidación"]
          [/uacf7-col]
       [/uacf7-row]
       <hr style="border: 1px solid #EEBF00;">
