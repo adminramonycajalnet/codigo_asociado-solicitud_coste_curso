@@ -11,7 +11,7 @@ function calcularCosteModulo(modulo, seleccion, antiguoAlumno) {
             coste = modulo.Horas_Asignadas * modulo.Precio_Hora_Matricula;
         }
         else{
-            if(seleccion == "Convalidación"){
+            if(seleccion == "Convalidación" || seleccion == "Exención"){
                 coste = modulo.Horas_Asignadas * modulo.Precio_Hora_Convalidacion;
             }
         }
@@ -22,7 +22,7 @@ function calcularCosteModulo(modulo, seleccion, antiguoAlumno) {
                 coste = modulo.Horas_Asignadas * modulo.Precio_Hora_Matricula_Antiguo_Alumno;
             }
             else{
-                if(seleccion == "Convalidación"){
+                if(seleccion == "Convalidación" || seleccion == "Exención"){
                     coste = modulo.Horas_Asignadas * modulo.Precio_Hora_Convalidacion_Antiguo_Alumno;
                 }
             }

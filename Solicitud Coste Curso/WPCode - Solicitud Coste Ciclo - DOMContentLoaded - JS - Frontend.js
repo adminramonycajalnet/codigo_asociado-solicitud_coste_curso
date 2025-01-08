@@ -253,9 +253,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     	restaPrevias = true;
 					else if (estadoActual === "Matrícula" && (estadoAnterior === "Convalidación" || estadoAnterior === "Excención"))
 						restaPrevias = false;
-					else if((estadoActual === "Convalidación" || estadoActual === "Excención") && estadoAnterior === "")
+					else if((estadoActual === "Convalidación" || estadoActual === "Exención") && estadoAnterior === "")
 							restaPrevias = false;
-					else if ((estadoActual == "Convalidación" || estadoActual === "Excención") && estadoAnterior == "Matrícula"){
+					else if ((estadoActual == "Convalidación" || estadoActual === "Exención") && estadoAnterior == "Matrícula"){
 						restaPrevias = true;
 						horasTotalMatriculaFinal -= horasPrevias;
 					}else
@@ -335,7 +335,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					document.querySelector('input[name="horas-idModulo-' + idModulo + '"]').value = modulo.Horas_Asignadas;
 					
 					if (opcion.checked) {
-                		let seleccion = opcion.value; // Puede ser "Matrícula", "Convalidación" o "Excención" este último en el caso de FCT
+                		let seleccion = opcion.value; // Puede ser "Matrícula", "Convalidación" o "Exención" este último en el caso de FCT
 						let modulosGuardados = sessionStorage.getItem('modulos-' + idCiclo);
 						let modulo = null;
 						
@@ -421,9 +421,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						document.querySelector('input[name="primer_pago-idModulo-aplazado-' + idModulo + '"]').value = ""
 						document.querySelector('input[name="coste-idModulo-aplazado-mensual-' + idModulo + '"]').value = "";
 					}
-					
-					console.log("horasTotalMatriculaFinal 1 = " + horasTotalMatriculaFinal);
-					
+										
 					//Comprobación de horas totales seleccionadas
 					if (horasTotalMatriculaFinal > 1000) {
                     	Swal.fire({
@@ -534,6 +532,11 @@ document.addEventListener('DOMContentLoaded', function() {
     	selectAntiguoAlumno.addEventListener('change', function() {
 			horasTotalMatriculaFinal = 0;
 			
+			if (selectAntiguoAlumno.value == "Si")
+				document.querySelector('input[name="descuento-antiguo-alumno"]').value = descuentoAntiguoAlumno;
+			else
+				document.querySelector('input[name="descuento-antiguo-alumno"]').value = "";
+						
         	// Disparar manualmente el evento 'change' para cada checkbox
         	let opciones = document.querySelectorAll('input[type="checkbox"][name^="idModulo-"]');
         	opciones.forEach((opcion) => {

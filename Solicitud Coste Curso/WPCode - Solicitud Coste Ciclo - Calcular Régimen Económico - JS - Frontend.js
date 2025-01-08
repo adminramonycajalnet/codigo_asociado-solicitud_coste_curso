@@ -31,9 +31,9 @@ function primerPagoApl(costeTotalAplazado, costeTotalAplazadoPrimero, costePrein
 	else{
 		primerPagoAplazado = costeTotalAplazado * (parseFloat(porcentajePagoAplazado) / 100);
 		
-		if(curso == 2 && costeTotalAplazadoPrimero < costePreinscripcion && preinscripcionPagada == false)
-				primerPagoAplazado = parseFloat(primerPagoAplazado) - parseFloat(costePreinscripcion);
-		else if(curso == 1 && preinscripcionPagada == false)
+		if(curso == 2 && costeTotalAplazadoPrimero < costePreinscripcion)
+			primerPagoAplazado = parseFloat(primerPagoAplazado) - parseFloat(costePreinscripcion);
+		else if(curso == 1)
 			primerPagoAplazado = parseFloat(primerPagoAplazado) - parseFloat(costePreinscripcion);
 		
 		primerPagoAplazado = parseFloat(primerPagoAplazado / 2).toFixed(2);
