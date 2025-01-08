@@ -251,11 +251,11 @@ document.addEventListener('DOMContentLoaded', function() {
 					// Restar horas previas de las totales generales y de matrícula
                     if (!opcion.checked && estadoAnterior === "Matrícula")
                     	restaPrevias = true;
-					else if (estadoActual === "Matrícula" && estadoAnterior === "Convalidación")
+					else if (estadoActual === "Matrícula" && (estadoAnterior === "Convalidación" || estadoAnterior === "Excención"))
 						restaPrevias = false;
-					else if(estadoActual === "Convalidación" && estadoAnterior === "")
+					else if((estadoActual === "Convalidación" || estadoActual === "Excención") && estadoAnterior === "")
 							restaPrevias = false;
-					else if (estadoActual == "Convalidación" && estadoAnterior == "Matrícula"){
+					else if ((estadoActual == "Convalidación" || estadoActual === "Excención") && estadoAnterior == "Matrícula"){
 						restaPrevias = true;
 						horasTotalMatriculaFinal -= horasPrevias;
 					}else
@@ -335,7 +335,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					document.querySelector('input[name="horas-idModulo-' + idModulo + '"]').value = modulo.Horas_Asignadas;
 					
 					if (opcion.checked) {
-                		let seleccion = opcion.value; // Puede ser "Matrícula" o "Convalidación"
+                		let seleccion = opcion.value; // Puede ser "Matrícula", "Convalidación" o "Excención" este último en el caso de FCT
 						let modulosGuardados = sessionStorage.getItem('modulos-' + idCiclo);
 						let modulo = null;
 						
