@@ -357,7 +357,7 @@
             <label for="">410 horas</label>
          [/uacf7-col] 
          [uacf7-col col:4]
-            [checkbox idModulo-108 use_label_element exclusive "Matrícula" "Convalidación"]
+            [checkbox idModulo-108 use_label_element exclusive "Matrícula" "Excención"]
          [/uacf7-col]
       [/uacf7-row]
       <hr style="border: 1px solid #EEBF00;">
