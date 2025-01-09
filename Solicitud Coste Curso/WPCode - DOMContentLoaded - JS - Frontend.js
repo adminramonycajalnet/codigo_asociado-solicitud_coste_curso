@@ -459,7 +459,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					let matriculaContadoConPreinsPrimeroRE = matriculaContadoConPreinsPrimero(costeTotalPrimero, costeTotalSegundo, costePreinscripcion);
 					let primerPagoAplPrimeroConPreinsRE = primerPagoApl(costeTotalAplazadoPrimero, costeTotalAplazadoPrimero, 
 																		costePreinscripcion, porcentajePagoAplazado, true, 1);
-					let segundoPagoPrimeroRE = segundoPagoApl(costeTotalAplazadoSegundo, costeTotalAplazadoPrimero, 
+					let segundoPagoPrimeroRE = segundoPagoApl(costeTotalAplazadoPrimero, costeTotalAplazadoPrimero, 
 																		costePreinscripcion, porcentajePagoAplazado, true, 1);
 					let primerPagoAplPrimeroSinPreinsRE = primerPagoApl(costeTotalAplazadoPrimero, costeTotalAplazadoPrimero, 
 																		costePreinscripcion, porcentajePagoAplazado, false, 1);
