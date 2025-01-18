@@ -535,7 +535,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			if (selectAntiguoAlumno.value == "Si")
 				document.querySelector('input[name="descuento-antiguo-alumno"]').value = descuentoAntiguoAlumno;
 			else
-				document.querySelector('input[name="descuento-antiguo-alumno"]').value = "";
+				document.querySelector('input[name="descuento-antiguo-alumno"]').value = "0";
 						
         	// Disparar manualmente el evento 'change' para cada checkbox
         	let opciones = document.querySelectorAll('input[type="checkbox"][name^="idModulo-"]');
