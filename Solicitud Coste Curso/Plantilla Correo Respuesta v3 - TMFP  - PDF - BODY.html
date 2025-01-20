@@ -8,11 +8,12 @@
         h1 {
             font-size: 1.2em;
             margin-bottom: 1em;
-						text-align: left;
+			text-align: left;
         }
         h2 {
             font-size: 1.1em;
             margin-bottom: 1em;
+            border-bottom: solid 2px #EEBF00;
         }
 
         .container {
@@ -28,26 +29,19 @@
 			border-spacing: 0px;
         }
 			
-			.student-data-responsive-table table td{
-				font-size: 0.9em;
-			}
+		.student-data-responsive-table table td{
+			font-size: 0.9em;
+		}
 			 
-				.course-name-table-head th {
+		.course-name-table-head, .course-table-head, .paid-method-table-head, .course-table-footer {
             text-align: center;
+            background-color: #EEBF00;
+            border: 1px solid white;
+            padding: 4px;
+            font-weight: bold;
+            font-size: 0.8em;
         }
-			 
-	    .course-table-head th {
-            text-align: center;
-        }
-			 
-        .course-table-foot th {
-            text-align: center;
-        }
-			 
-        .paid-method-table-head th {
-            text-align: center;
-        }
-			 
+			  
 		.module-name-cell {
             text-align: left;
             border: solid 1px #EEBF00;
@@ -63,15 +57,9 @@
             padding: 4px;
             text-align: left;
         }
-        th {
-            background-color: #EEBF00;
-            border: 1px solid white;
-            padding: 4px;
-            text-align: left;
-        }
+
         .responsive-table {
-            width: 100%;
-						
+            width: 100%;			
         }
 
         .economic-condition-responsive-table {
@@ -192,62 +180,51 @@
             <h1>Datos del alumno/a:</h1>
             <table>
                 <tr>
-                    <td colspan="2"><span class="bold">Nombre: </span>[nombre]</td>
-                    <td><span class="bold">Apellidos: </span>[apellidos]</td>
+                    <td colspan="1"><span class="bold">Nombre: </span>[nombre]</td>
+                    <td colspan="3"><span class="bold">Apellidos: </span>[apellidos]</td>
+                    <td colspan="1"><span class="bold">DNI/NIE: </span>[numero-dni-nie]</td>
                 </tr>
                 <tr>
-                    <td colspan="2"><span class="bold">DNI/NIE: </span>[numero-dni-nie]</td>
-                    <td><span class="bold">Fecha de nacimiento: </span>[fecha-nacimiento]</td>
+                    <td colspan="1"><span class="bold">Fecha de nacimiento: </span>[fecha-nacimiento]</td>
+                    <td colspan="3"><span class="bold">Teléfonos de contacto: </span>[telefono1] [telefono2]</td>
+                    <td colspan="1"><span class="bold">Email: </span>[email]</td>
                 </tr>
                 <tr>
-                    <td colspan="2"><span class="bold">Teléfonos de contacto: </span>[telefono1] [telefono2]</td>
-                    <td><span class="bold">Email: </span>[email]</td>
-                </tr>
-                <tr>
-                    <td colspan="3"><span class="bold">Dirección: </span>[calle] [numero] [codigo-postal] [localidad]. [provincia].</td>
+                    <td colspan="5"><span class="bold">Dirección: </span>[calle] [numero] [codigo-postal] [localidad]. [provincia].</td>
                 </tr>
 				<tr>
                     <td colspan="2"><span class="bold">¿Ha cursado algún ciclo o curso en el centro anteriormente? </span>[antiguo-alumno]</td>
-                    <td rowspan="3"><span class="bold">Descuento aplicado: </span><br>[descuento-antiguo-alumno]%</td>
-                </tr>
-                <tr>
-                    <td colspan="2"><span class="bold">Título obtenido: </span>[antiguo-alumno-titulo-obtenido]</td>
-                </tr>
-                <tr>
                     <td colspan="2"><span class="bold">Año de obtención: </span>[antiguo-alumno-ano-obtencion]</td>
+                    <td rowspan="2"><span class="bold">Descuento aplicado: </span><br>[descuento-antiguo-alumno]%</td>
+                </tr>
+                <tr>
+                    <td colspan="4"><span class="bold">Título obtenido: </span>[antiguo-alumno-titulo-obtenido]</td>
                 </tr>
             </table>
         </div>
 
         <h2>Módulos seleccionados para posible matrícula y/o convalidación:</h2>
 
-       
-      <table id="course-table-1">
-				<thead class="course-name-table-head">
-					<tr>
-						<th colspan="7">Primer curso</th>
-					</tr>
-				</thead>
-                <thead class="paid-method-table-head">
-					<tr>
-						<th colspan="3"></th>
-                        <th>Pago al contado</th>
-                        <th colspan="3">Pago aplazado</th>
-					</tr>
-				</thead>
-                <thead class="course-table-head">
-                    <tr>
-                        <th>Módulo</th>
-						<th>Horas lectivas</th>
-                        <th>Opción</th>
-                        <th>Precio total (€)</th>
-                        <th>Precio total (€)</th>
-                        <th>Matrícula (€)</th>
-                        <th>Mensualidad (€)</th>
-                    </tr>
-                </thead>
+        <div>
+            <h3>Primer curso</h3>
+
+            <table id="course-table-1">
                 <tbody>
-                    <tr id="idModule-5448" class="module-info-row">
+                    <tr>
+						<td class="paid-method-table-head" colspan="3"></td>
+                        <td class="paid-method-table-head">Pago al contado</td>
+                        <td class="paid-method-table-head" colspan="3">Pago aplazado</td>
+				    </tr>
+                    <tr>
+                        <td class="course-table-head">Módulo</td>
+						<td class="course-table-head">Horas lectivas</td>
+                        <td class="course-table-head">Opción</td>
+                        <td class="course-table-head">Precio total (€)</td>
+                        <td class="course-table-head">Precio total (€)</td>
+                        <td class="course-table-head">Matrícula (€)</td>
+                        <td class="course-table-head">Mensualidad (€)</td>
+                    </tr>
+                    <tr id="idModule-61" class="module-info-row">
                         <td class="module-name-cell">[nombre-idModulo-61]</td>
 						<td class="module-info-cell">[horas-idModulo-61]</td>
                         <td class="module-info-cell">[idModulo-61]</td>
@@ -256,7 +233,7 @@
                         <td class="module-info-cell">[primer_pago-idModulo-aplazado-61]</td>
                         <td class="module-info-cell">[coste-idModulo-aplazado-mensual-61]</td>
                     </tr>
-                    <tr id="idModule-5449" class="module-info-row">
+                    <tr id="idModule-102" class="module-info-row">
                         <td class="module-name-cell">[nombre-idModulo-102]</td>
 						<td class="module-info-cell">[horas-idModulo-102]</td>
                         <td class="module-info-cell">[idModulo-102]</td>
@@ -265,7 +242,7 @@
                         <td class="module-info-cell">[primer_pago-idModulo-aplazado-102]</td>
                         <td class="module-info-cell">[coste-idModulo-aplazado-mensual-102]</td>
                     </tr>
-                    <tr id="idModule-5450" class="module-info-row">
+                    <tr id="idModule-99" class="module-info-row">
                         <td class="module-name-cell">[nombre-idModulo-99]</td>
 						<td class="module-info-cell">[horas-idModulo-99]</td>
                         <td class="module-info-cell">[idModulo-99]</td>
@@ -274,7 +251,7 @@
                         <td class="module-info-cell">[primer_pago-idModulo-aplazado-99]</td>
                         <td class="module-info-cell">[coste-idModulo-aplazado-mensual-99]</td>
                     </tr>
-                    <tr id="idModule-5451" class="module-info-row">
+                    <tr id="idModule-103" class="module-info-row">
                         <td class="module-name-cell">[nombre-idModulo-103]</td>
 						<td class="module-info-cell">[horas-idModulo-103]</td>
                         <td class="module-info-cell">[idModulo-103]</td>
@@ -283,7 +260,7 @@
                         <td class="module-info-cell">[primer_pago-idModulo-aplazado-103]</td>
                         <td class="module-info-cell">[coste-idModulo-aplazado-mensual-103]</td>
                     </tr>
-                    <tr id="idModule-5457" class="module-info-row">
+                    <tr id="idModule-20" class="module-info-row">
                         <td class="module-name-cell">[nombre-idModulo-20]</td>
 						<td class="module-info-cell">[horas-idModulo-20]</td>
                         <td class="module-info-cell">[idModulo-20]</td>
@@ -292,7 +269,7 @@
                         <td class="module-info-cell">[primer_pago-idModulo-aplazado-20]</td>
                         <td class="module-info-cell">[coste-idModulo-aplazado-mensual-20]</td>
                     </tr>
-                    <tr id="idModule-5453" class="module-info-row">
+                    <tr id="idModule-105" class="module-info-row">
                         <td class="module-name-cell">[nombre-idModulo-105]</td>
 						<td class="module-info-cell">[horas-idModulo-105]</td>
                         <td class="module-info-cell">[idModulo-105]</td>
@@ -301,7 +278,7 @@
                         <td class="module-info-cell">[primer_pago-idModulo-aplazado-105]</td>
                         <td class="module-info-cell">[coste-idModulo-aplazado-mensual-105]</td>
                     </tr>
-                    <tr id="idModule-5452" class="module-info-row">
+                    <tr id="idModule-106" class="module-info-row">
                         <td class="module-name-cell">[nombre-idModulo-106]</td>
 						<td class="module-info-cell">[horas-idModulo-106]</td>
                         <td class="module-info-cell">[idModulo-106]</td>
@@ -311,43 +288,42 @@
                         <td class="module-info-cell">[coste-idModulo-aplazado-mensual-106]</td>
                     </tr>
                     <tr class="module-info-row total-row">
-                        <th class="module-name-cell">TOTAL</th>
-                        <th class="module-info-cell">[horas-total-primero]</th>
-                        <th class="module-info-cell"></th>
-                        <th class="module-info-cell">[coste-total-primero]</th>
-                        <th class="module-info-cell">[coste-total-aplazado-primero]</th>
-                        <th class="module-info-cell">[coste-total-primer-pago-aplazado-primero]</th>
-                        <th class="module-info-cell">[coste-total-aplazado-mensual-primero]</th>
-                     </tr> 
+                        <td class="course-table-footer">TOTAL</td>
+                        <td class="course-table-footer">[horas-total-primero]</td>
+                        <td class="course-table-footer"></td>
+                        <td class="course-table-footer">[coste-total-primero]</td>
+                        <td class="course-table-footer">[coste-total-aplazado-primero]</td>
+                        <td class="course-table-footer">[coste-total-primer-pago-aplazado-primero]</td>
+                        <td class="course-table-footer">[coste-total-aplazado-mensual-primero]</td>
+                    </tr> 
 				</tbody>
-			</table>
+		    </table>
+        </div>
 
-			<table id="course-table-2">
-				<thead class="course-name-table-head">
-					<tr>
-						<th colspan="7">Segundo curso</th>
-					</tr>
-				</thead>
-                <thead class="paid-method-table-head">
-					<tr>
-						<th colspan="3"></th>
-                        <th>Pago al contado</th>
-                        <th colspan="3">Pago aplazado</th>
-					</tr>
-				</thead>
-                <thead class="course-table-head">
-                    <tr>
-                        <th>Módulo</th>
-			            <th>Horas lectivas</th>
-                        <th>Opción</th>
-                        <th>Precio total (€)</th>
-                        <th>Precio total (€)</th>
-                        <th>Matrícula (€)</th>
-                        <th>Mensualidad (€)</th>
-                    </tr>
-                </thead>
+        <br>
+
+        <div>
+            <h3>Segundo curso</h3>
+		    <table id="course-table-2">
                 <tbody>
-                    <tr id="idModule-5455" class="module-info-row">
+                    <tr>
+						<td class="paid-method-table-head" colspan="3"></td>
+                        <td class="paid-method-table-head">Pago al contado</td>
+                        <td class="paid-method-table-head" colspan="3">Pago aplazado</td>
+					</tr>
+                    <tr>
+                        <td class="course-table-head">Módulo</td>
+						<td class="course-table-head">Horas lectivas</td>
+                        <td class="course-table-head">Opción</td>
+                        <td class="course-table-head">Precio total (€)</td>
+                        <td class="course-table-head">Precio total (€)</td>
+                        <td class="course-table-head">Matrícula (€)</td>
+                        <td class="course-table-head">Mensualidad (€)</td>
+                    </tr>
+                    <tr>
+                        <td class="course-table-head" colspan="7">Fase teórica</td>
+                    </tr>
+                    <tr id="idModule-101" class="module-info-row">
                         <td class="module-name-cell">[nombre-idModulo-101]</td>
 			            <td class="module-info-cell">[horas-idModulo-101]</td>
                         <td class="module-info-cell">[idModulo-101]</td>
@@ -356,7 +332,7 @@
                         <td class="module-info-cell">[primer_pago-idModulo-aplazado-101]</td>
                         <td class="module-info-cell">[coste-idModulo-aplazado-mensual-101]</td>
                     </tr>
-                    <tr id="idModule-5456" class="module-info-row">
+                    <tr id="idModule-107" class="module-info-row">
                         <td class="module-name-cell">[nombre-idModulo-107]</td>
 						<td class="module-info-cell">[horas-idModulo-107]</td>
                         <td class="module-info-cell">[idModulo-107]</td>
@@ -365,16 +341,7 @@
                         <td class="module-info-cell">[primer_pago-idModulo-aplazado-107]</td>
                         <td class="module-info-cell">[coste-idModulo-aplazado-mensual-107]</td>
                     </tr>
-                    <tr id="idModule-5456" class="module-info-row">
-                        <td class="module-name-cell">[nombre-idModulo-108]</td>
-						<td class="module-info-cell">[horas-idModulo-108]</td>
-                        <td class="module-info-cell">[idModulo-108]</td>
-                        <td class="module-info-cell">[coste-idModulo-108]</td>
-                        <td class="module-info-cell">[coste-idModulo-aplazado-108]</td>
-                        <td class="module-info-cell">[primer_pago-idModulo-aplazado-108]</td>
-                        <td class="module-info-cell">[coste-idModulo-aplazado-mensual-108]</td>
-                    </tr>
-                    <tr id="idModule-5456" class="module-info-row">
+                    <tr id="idModule-104" class="module-info-row">
                         <td class="module-name-cell">[nombre-idModulo-104]</td>
 						<td class="module-info-cell">[horas-idModulo-104]</td>
                         <td class="module-info-cell">[idModulo-104]</td>
@@ -383,7 +350,7 @@
                         <td class="module-info-cell">[primer_pago-idModulo-aplazado-104]</td>
                         <td class="module-info-cell">[coste-idModulo-aplazado-mensual-104]</td>
                     </tr>
-                    <tr id="idModule-5456" class="module-info-row">
+                    <tr id="idModule-100" class="module-info-row">
                         <td class="module-name-cell">[nombre-idModulo-100]</td>
 						<td class="module-info-cell">[horas-idModulo-100]</td>
                         <td class="module-info-cell">[idModulo-100]</td>
@@ -392,7 +359,7 @@
                         <td class="module-info-cell">[primer_pago-idModulo-aplazado-100]</td>
                         <td class="module-info-cell">[coste-idModulo-aplazado-mensual-100]</td>
                     </tr>
-                    <tr id="idModule-5456" class="module-info-row">
+                    <tr id="idModule-0" class="module-info-row">
                         <td class="module-name-cell">[nombre-idModulo-0]</td>
 						<td class="module-info-cell">[horas-idModulo-0]</td>
                         <td class="module-info-cell">[idModulo-0]</td>
@@ -401,17 +368,30 @@
                         <td class="module-info-cell">[primer_pago-idModulo-aplazado-0]</td>
                         <td class="module-info-cell">[coste-idModulo-aplazado-mensual-0]</td>
                     </tr>
-                    <tr class="module-info-row total-row">
-                        <th class="module-name-cell">TOTAL</th>
-                        <th class="module-info-cell">[horas-total-segundo]</th>
-                        <th class="module-info-cell"></th>
-                        <th class="module-info-cell">[coste-total-segundo]</th>
-                        <th class="module-info-cell">[coste-total-aplazado-segundo]</th>
-                        <th class="module-info-cell">[coste-total-primer-pago-aplazado-segundo]</th>
-                        <th class="module-info-cell">[coste-total-aplazado-mensual-segundo]</th>
+                    <tr>
+                        <td class="course-table-head" colspan="7">Fase práctica</td>
                     </tr>
+                    <tr id="idModule-108" class="module-info-row">
+                        <td class="module-name-cell">[nombre-idModulo-108]</td>
+						<td class="module-info-cell">[horas-idModulo-108]</td>
+                        <td class="module-info-cell">[idModulo-108]</td>
+                        <td class="module-info-cell">[coste-idModulo-108]</td>
+                        <td class="module-info-cell">[coste-idModulo-aplazado-108]</td>
+                        <td class="module-info-cell">[primer_pago-idModulo-aplazado-108]</td>
+                        <td class="module-info-cell">[coste-idModulo-aplazado-mensual-108]</td>
+                    </tr>
+                    <tr class="module-info-row total-row">
+                        <td class="course-table-footer">TOTAL</td>
+                        <td class="course-table-footer">[horas-total-primero]</td>
+                        <td class="course-table-footer"></td>
+                        <td class="course-table-footer">[coste-total-primero]</td>
+                        <td class="course-table-footer">[coste-total-aplazado-primero]</td>
+                        <td class="course-table-footer">[coste-total-primer-pago-aplazado-primero]</td>
+                        <td class="course-table-footer">[coste-total-aplazado-mensual-primero]</td>
+                    </tr> 
                 </tbody> 
             </table>
+        </div>
 
         <p><span class="bold">Coste total al contado: </span> [coste-total-final]€.</p>
         <p><span class="bold">Coste total pago aplazado: </span> [coste-total-aplazado-final]€.</p>
@@ -524,7 +504,7 @@
                 <ol>
                     <li>Horario de atención al público en Secretaría: De 09:00 a 14:00 horas de lunes a viernes</li>
                     <li>El número de plazas mínimo de cada grupo será de 20 alumnos/as. En el supuesto de no completar algún grupo con el mínimo de alumnos/as, Centro Cordobés de Enseñanzas Medias, S.Coop.And. se reserva la opción de NO poner en marcha la enseñanza de ese grupo. En el caso de ejercitar la opción mencionada, se devolverá al alumno/a el pago de la preinscripción antes del día 30 de SEPTIEMBRE del año en curso.</li>
-                    <li>El importe de la preinscripción o reserva le será deducido del COSTE TOTAL del curso al realizar la matrícula. Cuando se produzca la NO MATRICULACIÓN del alumno/a y esté motivada por cualquier tipo de causas imputables al mismo/a, el iporte íntegro de la Preinscripción qudará a disposición del Centro Cordobés de Enseñanzas Medias, S.Coop.And. como daños y perjuicios por la no ocupación de la plaza reservada.</li>
+                    <li>El importe de la preinscripción o reserva le será deducido del COSTE TOTAL del curso al realizar la matrícula. Cuando se produzca la NO MATRICULACIÓN del alumno/a y esté motivada por cualquier tipo de causas imputables al mismo/a, el importe íntegro de la Preinscripción qudará a disposición del Centro Cordobés de Enseñanzas Medias, S.Coop.And. como daños y perjuicios por la no ocupación de la plaza reservada.</li>
                     <li>Devolución de mensualidades: La devolución de cualquir recibo bancario conllevará un recargo de 10€ por cada uno de ellos.</li>
                     <li>El precio de hora lectiva con pago al contado es de [coste-hora]€</li>
                     <li>El precio de la hora lectiva con pago aplazado es de [coste-hora-aplazado]€. Un [porcentaje-primer-pago-aplazado]% se liquidará en los pagos de reserva y matrícula. El restante [resto-porcentaje-pago-aplazado]% será liquidado en [numero-mensualidades-primero] mensualidades [rango-mensualidades-primero] para los módulos pertenecientes al primer curso y en [numero-mensualidades-segundo] mensualidades [rango-mensualidades-segundo] para los módulos pertenecientes al segundo curso.</li>

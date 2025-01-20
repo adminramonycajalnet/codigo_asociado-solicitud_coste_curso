@@ -28,7 +28,8 @@ function calcularCosteModulo(modulo, seleccion, antiguoAlumno) {
             }
         }
     }
-   return (Math.round(coste * 10) / 10).toFixed(2);
+	
+	return parseFloat(coste).toFixed(2);
 }
 
 function calcularCosteModuloAplazado(costeModulo, incrementoPagoAplazado) {

@@ -34,11 +34,17 @@ document.addEventListener('DOMContentLoaded', function() {
 	let porcentaje = 0;
 	let costePreinscripcion = 0;
 	let numMensualidadesPrimero = 0;
-	let numMensualidadesSegundo = 0;
+	let numMensualidadesSegundoTMFPTeoria = 0;
+	let numMensualidadesSegundoTMFPPractica = 0;
+	let numMensualidadesSegundoTMCAE = 0;
 	let rangoMensualidadesPrimero = "";
-	let rangoMensualidadesSegundo = "";
+	let rangoMensualidadesSegundoTMFPTeoria = "";
+	let rangoMensualidadesSegundoTMFPPractica = "";
+	let rangoMensualidadesSegundoTMCAE = "";
 	let fechaSegundoPagoAplazadoPrimero = "";
-	let fechaSegundoPagoAplazadoSegundo = "";
+	let fechaSegundoPagoAplazadoSegundoTMFPTeoria = "";
+	let fechaSegundoPagoAplazadoSegundoTMFPPractica = "";
+	let fechaSegundoPagoAplazadoSegundoTMCAE = "";
 	
 	// Valores finales
     let horasTotalFinal = 0;
@@ -111,15 +117,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 		
 		if (rangosMensualidades && Array.isArray(rangosMensualidades)) {
-            const rangoMensualPrimero = rangosMensualidades.find(rm => rm.ID_Mensualidades == 1);
-			const rangoMensualSegundo = rangosMensualidades.find(rm => rm.ID_Mensualidades == 2);
-            if (rangoMensualPrimero || rangoMensualSegundo) {
-				numMensualidadesPrimero = rangoMensualPrimero.Numero_Mensualidades;
-				numMensualidadesSegundo = rangoMensualSegundo.Numero_Mensualidades;
-				rangoMensualidadesPrimero = rangoMensualPrimero.Rango_Mensualidades;
-				rangoMensualidadesSegundo = rangoMensualSegundo.Rango_Mensualidades;
-				fechaSegundoPagoAplazadoPrimero = rangoMensualPrimero.Fecha_Segundo_Pago + "/" + String(new Date().getFullYear() + 1);
-				fechaSegundoPagoAplazadoSegundo = rangoMensualSegundo.Fecha_Segundo_Pago + "/" + String(new Date().getFullYear() + 1);
+            const rangoMesPrimero = rangosMensualidades.find(rm => rm.ID_Mensualidades == 1);
+			const rangoMesSegundoTMFPTeoria = rangosMensualidades.find(rm => rm.ID_Mensualidades == 2);
+			const rangoMesSegundoTMFPPractica = rangosMensualidades.find(rm => rm.ID_Mensualidades == 3);
+			const rangoMesSegundoTMCAE = rangosMensualidades.find(rm => rm.ID_Mensualidades == 4);
+            if (rangoMesPrimero && rangoMesSegundoTMFPTeoria && rangoMesSegundoTMFPPractica && rangoMesSegundoTMCAE) {
+				numMensualidadesPrimero = rangoMesPrimero.Numero_Mensualidades;
+				numMensualidadesSegundoTMFPTeoria = rangoMesSegundoTMFPTeoria.Numero_Mensualidades;
+				numMensualidadesSegundoTMFPPractica = rangoMesSegundoTMFPPractica.Numero_Mensualidades;
+				numMensualidadesSegundoTMCAE = rangoMesSegundoTMCAE.Numero_Mensualidades;
+				rangoMensualidadesPrimero = rangoMesPrimero.Rango_Mensualidades;
+				rangoMensualidadesSegundoTMFPTeoria = rangoMesSegundoTMFPTeoria.Rango_Mensualidades;
+				rangoMensualidadesSegundoTMFPPractica = rangoMesSegundoTMFPTeoria.Rango_Mensualidades;
+				rangoMensualidadesSegundoTMCAE= rangoMesSegundoTMCAE.Rango_Mensualidades;
+				fechaSegundoPagoAplazadoPrimero = rangoMesPrimero.Fecha_Segundo_Pago + "/" + String(new Date().getFullYear() + 1);
+				fechaSegundoPagoAplazadoSegundoTMFPTeoria = rangoMesSegundoTMFPTeoria.Fecha_Segundo_Pago + "/" + 
+					String(new Date().getFullYear() + 1);
+				fechaSegundoPagoAplazadoSegundoTMFPPractica = rangoMesSegundoTMFPPractica.Fecha_Segundo_Pago + "/" + 
+					String(new Date().getFullYear() + 1);
+				fechaSegundoPagoAplazadoSegundoTMCAE = rangoMesSegundoTMCAE.Fecha_Segundo_Pago + "/" + 
+					String(new Date().getFullYear() + 1);
             } else {
                 console.log("No se encontró un rango de mensualidades con ID_Rango_mensualides = 1 o 2");
             }
@@ -158,9 +175,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		let { incrementoPagoAplazado, descuentoAntiguoAlumno, porcentajePagoAplazado, cuentaBanco, modulos } = valores;
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		//-------------------------------------------- TODOS LOS DATOS OBTENIDOS DE LA BASE DE DATOS----------------------------------//
-		//--------------------- COMIENZA LA INICIALIZACIÓN DE LOS CAMPOS HIDDEN Y LOS CÁLCULOS DE COSTE  Y HORAS----------------------//
-		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+//-------------------------------------------- TODOS LOS DATOS OBTENIDOS DE LA BASE DE DATOS----------------------------------//
+//--------------------- COMIENZA LA INICIALIZACIÓN DE LOS CAMPOS HIDDEN Y LOS CÁLCULOS DE COSTE  Y HORAS----------------------//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	
 		if (modulos) {
 			// Almacenar los módulos en sessionStorage
@@ -182,10 +199,11 @@ document.addEventListener('DOMContentLoaded', function() {
 					
 				document.querySelector('input[name="coste-hora"]').value = modulo.Precio_Hora_Matricula;
 				document.querySelector('input[name="coste-hora-aplazado"]').value = modulo.Precio_Hora_Matricula_Aplazado;
-				document.querySelector('input[name="porcentaje-modulo-convalidado"]').value = (parseFloat(modulo.Precio_Hora_Convalidacion) / 		
-																							   parseFloat(modulo.Precio_Hora_Matricula)) * 100;
+				document.querySelector('input[name="porcentaje-modulo-convalidado"]').value = 
+					(parseFloat(modulo.Precio_Hora_Convalidacion) / parseFloat(modulo.Precio_Hora_Matricula)) * 100;
 				document.querySelector('input[name="porcentaje-primer-pago-aplazado"]').value = parseFloat(porcentaje.Porcentaje);
-				document.querySelector('input[name="resto-porcentaje-pago-aplazado"]').value = 100 - parseFloat(porcentaje.Porcentaje);
+				document.querySelector('input[name="resto-porcentaje-pago-aplazado"]').value = 
+					100 - parseFloat(porcentaje.Porcentaje);
 					
 				//Asignar número de cuenta bancario a los campos correspondientes del html final
 				document.querySelector('input[name="iban-banco"]').value = cuentaBanco[0];
@@ -194,9 +212,8 @@ document.addEventListener('DOMContentLoaded', function() {
 				document.querySelector('input[name="dc-banco"]').value = cuentaBanco[3];
 				document.querySelector('input[name="numero-cuenta-banco"]').value = cuentaBanco[4];
 				
-				/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-				//-- ASIGNACIÓN DE EVENTOS PARA CONTROL DE VALORES PREVIOS Y ACUTAL DE LOS CHECK DE MATRÍCULA Y CONVALIDACIÓN DE CADA MÓDULO --//
-				/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//-- ASIGNACIÓN DE EVENTOS PARA CONTROL DE VALORES PREVIOS Y ACUTAL DE LOS CHECK DE MATRÍCULA Y CONVALIDACIÓN DE CADA MÓDULO --//	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 				
 				// Asignar evento para controlar el cambio, valor actual y valor previo de los grupos checkbox de cada módulo
 				let seleccion = null;
@@ -223,18 +240,18 @@ document.addEventListener('DOMContentLoaded', function() {
 				});
 				
 				////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-				//------------ ASIGNACIÓN DE EVENTOS PARA CONTROL DE CAMBIO DE LOS CHECK DE MATRÍCULA Y CONVALIDACIÓN DE CADA MÓDULO ---------//
-				//-------------------- CADA VEZ QUE SE CLICKA EN ALGUNA DE LAS OPCIONES SE RECALCULAN LOS COSTES Y HORAS ---------------------//
-				////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+//------------ ASIGNACIÓN DE EVENTOS PARA CONTROL DE CAMBIO DE LOS CHECK DE MATRÍCULA Y CONVALIDACIÓN DE CADA MÓDULO ---------//
+//-------------------- CADA VEZ QUE SE CLICKA EN ALGUNA DE LAS OPCIONES SE RECALCULAN LOS COSTES Y HORAS ---------------------//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 						
 				opcion.addEventListener('change', function() {
 					// Obtener el ID del módulo desde el atributo "name" del checkbox
             		let idModulo = opcion.name.split('-')[1];
 					let antiguoAlumno = document.querySelector('select[name="antiguo-alumno"]').value;
 					
-					////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-					//--- OBTENCIÓN DE VALORES YA ASIGNADOS AL MÓDULO SOBRE CUYOS CHECK SE HA CLICKADO PARA POSIBLE RESTA O SUMA SOBRE EL TOTAL---//
-					////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//--- OBTENCIÓN DE VALORES YA ASIGNADOS AL MÓDULO SOBRE CUYOS CHECK SE HA CLICKADO PARA POSIBLE RESTA O SUMA SOBRE EL TOTAL---//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 							
 					// Obtener valores actuales del módulo
 					let horasPrevias = parseFloat(document.querySelector('input[name="horas-idModulo-' + idModulo + '"]').value) || 0;
@@ -263,14 +280,10 @@ document.addEventListener('DOMContentLoaded', function() {
 					
 					// Incrementar o restar según corresponda
 					if (restaPrevias == true) {
-                    	if (modulo.Curso == 1) {
+                    	if (modulo.Curso == 1) 
                            	horasTotalPrimero -= horasPrevias;
-							
-						}
-                         else if (modulo.Curso == 2){
+                         else if (modulo.Curso == 2)
                          	horasTotalSegundo -= horasPrevias;
-							 
-						 }
 					    
 						horasTotalMatriculaFinal -= (opcion.value == "Matrícula")  ? horasPrevias : 0;
 					}   	
@@ -312,17 +325,14 @@ document.addEventListener('DOMContentLoaded', function() {
 					horasTotalFinal = parseInt(horasTotalPrimero) + parseInt(horasTotalSegundo);
 					costeTotalFinal = parseFloat(costeTotalPrimero) + parseFloat(costeTotalSegundo);
 					costeTotalAplazadoFinal = parseFloat(costeTotalAplazadoPrimero) + parseFloat(costeTotalAplazadoSegundo);
-							
 					////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-					//----------------- ASIGNACIÓN DE NOMBRE Y HORAS A LOS CAMPOS OCULTOS DE TODOS LOS MÓDULOS, SE SELECCIONEN O NO --------------//
-					////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////			
-							
+//----------------- ASIGNACIÓN DE NOMBRE Y HORAS A LOS CAMPOS OCULTOS DE TODOS LOS MÓDULOS, SE SELECCIONEN O NO --------------//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////			
 					document.querySelector('input[name="nombre-idModulo-' + idModulo + '"]').value = modulo.Nombre;
 					document.querySelector('input[name="horas-idModulo-' + idModulo + '"]').value = modulo.Horas_Asignadas;
 					
-					////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-					//----------------------- CÁLCULOS A REALIZAR SI SE PRESIONA MATRÍCULA O CONVALIDACIÓN DE CADA MÓDULO ------------------------//
-					////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//----------------------- CÁLCULOS A REALIZAR SI SE PRESIONA MATRÍCULA O CONVALIDACIÓN DE CADA MÓDULO ------------------------//	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 				
 					costeTotal = modulo.Curso == 1 ? costeTotalPrimero : costeTotalSegundo;
 					costeTotalAplazado = modulo.Curso == 1 ? costeTotalAplazadoPrimero : costeTotalAplazadoSegundo;
@@ -347,7 +357,23 @@ document.addEventListener('DOMContentLoaded', function() {
 						let costeModulo = calcularCosteModulo(modulo, seleccion, antiguoAlumno);
 						let costeModuloAplazado = calcularCosteModuloAplazado(costeModulo, incrementoPagoAplazado);
 						let primerPagoModuloAplazado = calcularPrimerPagoModuloAplazado(costeModuloAplazado, porcentajePagoAplazado);
-						let numMensualidades = modulo.Curso == 1 ? numMensualidadesPrimero : numMensualidadesSegundo;
+						
+						let numMensualidades = 0;
+						if (modulo.Curso == 1) {
+    						numMensualidades = numMensualidadesPrimero;
+						} else if (modulo.Curso == 2) {
+    						if (idCiclo == 19201) {
+        						numMensualidades = numMensualidadesSegundoTMCAE;
+    						} else if (idCiclo == 19202) {
+        						numMensualidades = (modulo.ID_Modulo == 108) ? 
+									numMensualidadesSegundoTMFPPractica : numMensualidadesSegundoTMFPTeoria;
+    						}
+						}
+						
+						console.log("numMensualidades = " + numMensualidades);
+						console.log("modulo.Curso = " + modulo.Curso);
+						console.log("idCiclo = " + idCiclo);
+
 						let costeModuloAplazadoMensual = calcularCosteModuloAplazadoMensualidad(costeModuloAplazado, porcentajePagoAplazado, modulo.Curso,  numMensualidades);
 
 						//Asignar el coste al campo oculto correspondiente al módulo.
@@ -367,7 +393,7 @@ document.addEventListener('DOMContentLoaded', function() {
     						horasTotal = (parseInt(horasTotal) || 0) + (parseInt(modulo.Horas_Asignadas) || 0);
 									
 							// Sumar a las horas de matrícula final si es de tipo Matrícula
-                           	if (opcion.value == "Matrícula") 
+                           	if (opcion.value == "Matrícula" && modulo.ID_Modulo != 108) 
                             	horasTotalMatriculaFinal += (parseInt(modulo.Horas_Asignadas) || 0);
                                 	
 		    				// Actualizar coste total
@@ -449,8 +475,8 @@ document.addEventListener('DOMContentLoaded', function() {
 					document.querySelector('input[name="coste-total-aplazado-final"]').value = costeTotalAplazadoFinal;
 							
 					///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-					//------------------------------------------------- RÉGIMEN ECONÓMICO -------------------------------------------------------//
-					///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//------------------------------------------------- RÉGIMEN ECONÓMICO -------------------------------------------------------//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 							
 					//CÁLCULO DE VALORES PARA RÉGIMEN ECONÓMICO
 					//PRIMERO
@@ -470,6 +496,14 @@ document.addEventListener('DOMContentLoaded', function() {
 					let matriculaContadoConPreinsSegundoRE = matriculaContadoConPreinsSegundo(costeTotalSegundo, costeTotalPrimero, costePreinscripcion);
 					let primerPagoAplSegundoConPreinsRE = primerPagoApl(costeTotalAplazadoSegundo, costeTotalAplazadoPrimero, 
 																		costePreinscripcion, porcentajePagoAplazado, true, 2);
+					
+					let numMensualidadesSegundo = 0;
+					if (idCiclo == 19201) {
+        				numMensualidadesSegundo = numMensualidadesSegundoTMCAE;
+    				} else if (idCiclo == 19202) {
+        				numMensualidadesSegundo = numMensualidadesSegundoTMFPTeoria;	
+					}
+
 					let mensualidadesSegundoRE = mensualidades(costeTotalAplazadoSegundo, costePreinscripcion, porcentajePagoAplazado, numMensualidadesSegundo);
 					let segundoPagoSegundoRE = segundoPagoApl(costeTotalAplazadoSegundo, costeTotalAplazadoPrimero, 
 																		costePreinscripcion, porcentajePagoAplazado, true, 2);
@@ -499,19 +533,29 @@ document.addEventListener('DOMContentLoaded', function() {
 						document.querySelector('input[name="coste-total-aplazado-primero-regimen-economico"]').value = 0;
 							
 					//SEGUNDO			
-					document.querySelector('input[name="coste-matricula-segundo"]').value = matriculaContadoConPreinsSegundoRE;
-							
+					document.querySelector('input[name="coste-matricula-segundo"]').value = matriculaContadoConPreinsSegundoRE;	
 					document.querySelector('input[name="coste-total-primer-pago-aplazado-con-preinscripcion-segundo"]').value = primerPagoAplSegundoConPreinsRE;
-					document.querySelector('input[name="fecha-segundo-pago-matricula-segundo"]').value = fechaSegundoPagoAplazadoSegundo;
-					document.querySelector('input[name="coste-total-segundo-pago-aplazado-con-preinscripcion-segundo"]').value = segundoPagoSegundoRE;
-							
+					
+					if(idCiclo == 19201){
+						document.querySelector('input[name="fecha-segundo-pago-matricula-segundo"]').value = fechaSegundoPagoAplazadoSegundoTMCAE;
+						document.querySelector('input[name="fecha-segundo-pago-matricula-segundo"]').value = fechaSegundoPagoAplazadoSegundoTMCAE;
+						document.querySelector('input[name="fecha-segundo-pago-matricula-segundo"]').value = fechaSegundoPagoAplazadoSegundoTMCAE;
+						document.querySelector('input[name="rango-mensualidades-segundo"]').value = rangoMensualidadesSegundoTMCAE;
+					}
+					else if(idCiclo == 19202){
+						document.querySelector('input[name="fecha-segundo-pago-matricula-segundo"]').value = fechaSegundoPagoAplazadoSegundoTMFPTeoria;
+						document.querySelector('input[name="fecha-segundo-pago-matricula-segundo"]').value = fechaSegundoPagoAplazadoSegundoTMFPTeoria;
+						document.querySelector('input[name="fecha-segundo-pago-matricula-segundo"]').value = fechaSegundoPagoAplazadoSegundoTMFPTeoria;
+						document.querySelector('input[name="rango-mensualidades-segundo"]').value = rangoMensualidadesSegundoTMFPTeoria;
+					}
+				
+					document.querySelector('input[name="coste-total-segundo-pago-aplazado-con-preinscripcion-segundo"]').value = segundoPagoSegundoRE;	
 					document.querySelector('input[name="coste-total-primer-pago-aplazado-sin-preinscripcion-segundo"]').value = primerPagoAplSegundoSinPreinsRE;
-					document.querySelector('input[name="fecha-segundo-pago-matricula-segundo"]').value = fechaSegundoPagoAplazadoSegundo;
+					
 					document.querySelector('input[name="coste-total-segundo-pago-aplazado-sin-preinscripcion-segundo"]').value = segundoPagoSegundoRE;
-							
 					document.querySelector('input[name="numero-mensualidades-segundo"]').value = numMensualidadesSegundo;
-					document.querySelector('input[name="rango-mensualidades-segundo"]').value = rangoMensualidadesSegundo;
 					document.querySelector('input[name="coste-mensual-segundo"]').value = mensualidadesSegundoRE;
+					
 					if(mensualidadesSegundoRE > 0)
 						document.querySelector('input[name="coste-total-aplazado-segundo-regimen-economico"]').value = costeTotalAplazadoSegundo;
 					else
@@ -521,9 +565,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		//---------------------- ASIGNACIÓN DE EVENTOS PARA CONTROL DE CAMBIO DEL SELECT DE ANTIGUO ALUMNO ----------------------------//
-		//------------------ CADA VEZ QUE SE CAMBIA SU VALOR SE LANZAN TODOS LOS CHANGE DE LOS CHECKBOX DE LOS MÓDULOS ----------------//
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+//---------------------- ASIGNACIÓN DE EVENTOS PARA CONTROL DE CAMBIO DEL SELECT DE ANTIGUO ALUMNO ----------------------------//
+//------------------ CADA VEZ QUE SE CAMBIA SU VALOR SE LANZAN TODOS LOS CHANGE DE LOS CHECKBOX DE LOS MÓDULOS ----------------//	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 		
 		// Seleccionar el select de "antiguo-alumno"
     	let selectAntiguoAlumno = document.querySelector('select[name="antiguo-alumno"]');
@@ -546,8 +589,7 @@ document.addEventListener('DOMContentLoaded', function() {
     	});
 			
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		//--------------------------------- ASIGNACIÓN DE EVENTOS PARA CONTROL MAYORÍA DE EDAD ----------------------------------------//
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+//--------------------------------- ASIGNACIÓN DE EVENTOS PARA CONTROL MAYORÍA DE EDAD ----------------------------------------//	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 				
 		let fechas = document.getElementsByClassName('wpcf7-form-control wpcf7-date');
 		let fechaNacimiento = Array.from(fechas).find(fecha => fecha.type === 'date');
